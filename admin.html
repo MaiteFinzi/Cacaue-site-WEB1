@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Administrativo - CACAUÊ</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Cabeçalho Principal da Administração -->
+    <header class="cabecalho-administrativo">
+      <div class="bloco-logotipo">
+        <img
+          class="imagem-logo-arvore"
+          src="./imagens/logo_Cacaue_arvore.png"
+          alt="Logo da Cacauê"
+        />
+        <h1 class="titulo-logotipo">CACAUÊ</h1>
+      </div>
+      <a href="index.html" class="etiqueta-painel">Painel Administrativo</a>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="conteudo-principal">
+      <section class="secao-boas-vindas">
+        <h2>Olá, admin! O que deseja fazer hoje?</h2>
+      </section>
+
+      <!-- Menu de Navegação e Ações Rápidas -->
+      <nav class="menu-acoes-rapidas">
+        <div class="cartao-menu">
+          <h3>Gerenciar Produtos</h3>
+          <ul class="lista-opcoes-menu">
+            <li>
+              <a href="#secao-formulario-produto" class="botao-acao-menu"
+                >Cadastrar</a
+              >
+            </li>
+            <li>
+              <a href="#tabela-produtos" class="botao-acao-menu">Atualizar</a>
+            </li>
+            <li>
+              <a href="#tabela-produtos" class="botao-acao-menu"
+                >Remover / Listar</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="cartao-menu">
+          <h3>Gerenciar Fornecedores</h3>
+          <ul class="lista-opcoes-menu">
+            <li>
+              <a href="#secao-formulario-fornecedor" class="botao-acao-menu"
+                >Cadastrar</a
+              >
+            </li>
+            <li>
+              <a href="#tabela-fornecedores" class="botao-acao-menu"
+                >Atualizar</a
+              >
+            </li>
+            <li>
+              <a href="#tabela-fornecedores" class="botao-acao-menu"
+                >Remover / Listar</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- ================= SEÇÃO DE PRODUTOS ================= -->
+      <section id="secao-formulario-produto" class="secao-formulario">
+        <h3>Cadastro e Atualização de Produtos</h3>
+        <form id="form-produto" class="formulario-em-grade">
+          <div class="grupo-campo-formulario">
+            <label for="campo-nome-produto">Nome do Produto</label>
+            <input
+              type="text"
+              id="campo-nome-produto"
+              placeholder="Ex: Trufa de Cacau"
+              required
+            />
+          </div>
+
+          <div class="grupo-campo-formulario">
+            <label for="campo-categoria">Categoria / Tipo</label>
+            <input
+              type="text"
+              id="campo-categoria"
+              placeholder="Ex: Chocolates"
+              required
+            />
+          </div>
+
+          <div class="grupo-campo-formulario">
+            <label for="campo-preco">Preço (R$)</label>
+            <input
+              type="number"
+              id="campo-preco"
+              step="0.01"
+              placeholder="Ex: 15.90"
+            />
+          </div>
+
+          <div class="grupo-campo-formulario">
+            <label for="campo-quantidade">Estoque / Quantidade</label>
+            <input type="number" id="campo-quantidade" placeholder="Ex: 50" />
+          </div>
+
+          <div class="grupo-campo-formulario largura">
+            <label for="campo-img">Foto do Produto</label>
+            <input type="file" id="campo-img" accept="image/*" />
+          </div>
+
+          <div class="rodape-formulario">
+            <button
+              type="submit"
+              id="botao-salvar-produto"
+              class="botao-salvar-registro"
+            >
+              Salvar Produto
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Tabela de Produtos -->
+      <section class="secao-tabela">
+        <h3>Lista de Produtos Cadastrados</h3>
+        <div class="container-tabela-responsiva">
+          <table id="tabela-produtos" class="tabela-administrativa">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Foto</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= SEÇÃO DE FORNECEDORES ================= -->
+      <section id="secao-formulario-fornecedor" class="secao-formulario">
+        <h3>Cadastro de Fornecedores</h3>
+        <form id="form-fornecedor" class="formulario-em-grade">
+          <div class="grupo-campo-formulario">
+            <label for="campo-nome-fornecedor">Nome do Fornecedor</label>
+            <input
+              type="text"
+              id="campo-nome-fornecedor"
+              placeholder="Ex: Joao Cacau"
+              required
+            />
+          </div>
+
+          <div class="grupo-campo-formulario">
+            <label for="campo-contato">Contato</label>
+            <input
+              type="text"
+              id="campo-contato"
+              placeholder="Ex: (11) 91234-5678"
+              required
+            />
+          </div>
+
+          <div class="grupo-campo-formulario">
+            <label for="campo-cnpj">CNPJ</label>
+            <input
+              type="text"
+              id="campo-cnpj"
+              placeholder="Ex: 22.222.222/2222-22"
+            />
+          </div>
+
+          <div class="grupo-campo-formulario largura">
+            <label for="campo-produto-fornecido">Produto Fornecido</label>
+            <input
+              type="text"
+              id="campo-produto-fornecido"
+              placeholder="Ex: Cacau em pó"
+            />
+          </div>
+
+          <div class="rodape-formulario">
+            <button
+              type="submit"
+              id="botao-salvar-fornecedor"
+              class="botao-salvar-registro"
+            >
+              Salvar Fornecedor
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Tabela de Fornecedores -->
+      <section class="secao-tabela">
+        <h3>Lista de Fornecedores Cadastrados</h3>
+        <div class="container-tabela-responsiva">
+          <table id="tabela-fornecedores" class="tabela-administrativa">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Contato</th>
+                <th>CNPJ</th>
+                <th>Produto Fornecido</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2026 Cacauê. Todos os direitos reservados.</p>
+    </footer>
+    <script src="admin.js"></script>
+  </body>
+</html>
