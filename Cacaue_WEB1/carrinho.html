@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <title>Carrinho</title>
+</head>
+
+<body style="margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; background-color: #ffffff;">
+    <div id="destaque-carrinho" class="destaque-carrinho">
+  <!-- Cabeçalho do Carrinho -->
+  <div class="carrinho-cabecalho">
+    <div class="logo-cacaue">
+        <img
+          class="img-logo-cacaue"
+          src="./imagens/logo_Cacaue_arvore.png"
+          alt="Logo da Cacauê"
+        />
+        <h1 class="nome-logo-cacaue">CACAUÊ</h1>
+      </div>
+    <h2>Seu carrinho</h2>
+    <a href="index.html" class="link-voltar">voltar</a>
+  </div>
+
+  <div class="agradecimento-container">
+    <p class="agradecimento-texto">Obrigada por apoiar o nosso trabalho artesanal. É um prazer ter você na família Cacauê!</p>
+  </div>
+
+  <!-- Lista de Itens do Carrinho (Dinâmico via JS) -->
+  <div id="carrinho-lista-itens" class="carrinho-lista-itens">
+    <!-- Os cards de produtos injetados pelo JS virão aqui -->
+  </div>
+
+  <!-- Total -->
+  <div class="carrinho-rodape">
+    <div class="linha-total">
+      <span>Subtotal</span>
+      <span id="carrinho-subtotal">R$ 54,80</span>
+    </div>
+    <div class="linha-total">
+      <span>Entrega</span>
+      <span class="entrega-info">Calculada no checkout</span>
+    </div>
+    <div class="linha-total total-geral">
+      <span>Total</span>
+      <span id="carrinho-total">R$ 54,80</span>
+    </div>
+
+    <button class="botao-checkout" onclick="finalizarCompraWhatsApp()">
+        Ir para o checkout
+    </button>
+    <button class="botao-continuar" onclick="window.location.href='index.html'">
+        Continuar comprando
+    </button>
+
+    <div class="seguranca-info">
+      <small>🔒 Pagamento protegido e suporte humano</small>
+    </div>
+  </div>
+</div>
+<script src="carrinho.js"></script>
+</body>
+</html>

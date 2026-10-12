@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cacauê pra você</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo-cacaue">
+        <img
+          class="img-logo-cacaue"
+          src="./imagens/logo_Cacaue_arvore.png"
+          alt="Logo da Cacauê"
+        />
+        <h1 class="nome-logo-cacaue">CACAUÊ</h1>
+      </div>
+
+      <div class="header-centro">
+        <div class="pesquisa-container">
+          <img
+            src="./imagens/Buscar.png"
+            alt="Ícone de busca"
+            class="pesquisa-icone"
+          />
+          <input
+            type="text"
+            placeholder="Buscar chocolates, nibs, cacau em pó..."
+            class="pesquisa-input"
+            id="campo-pesquisa"
+          />
+        </div>
+
+        <nav class="menu-navegacao">
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="#quem-somos">Quem somos</a></li>
+            <li><a href="processo.html">Processo</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="header-direita">
+        <a class="login-link" href="login.html">Login</a>
+        <a href="carrinho.html" class="carrinho-link">
+          <img
+            class="img-carrinho"
+            src="./imagens/carrinho.png"
+            alt="Carrinho de Compras"
+          />
+          <span id="carrinho-contador" class="carrinho-contador-estilo">0</span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="secao-produtos">
+        <div class="produtos-header">
+          <h2>Escolha pelo seu momento.</h2>
+          <p>
+            Do chocolate para comer até o cacau para a receita do fim de semana.
+          </p>
+
+          <div class="produtos-grid">
+            <div class="card-destaque-vertical">
+              <span class="sub-destaque">Processo</span>
+              <h3>Veja aqui como nossos produtos são confeccionados.</h3>
+              <p>Conheça todo processo, da colheita até chegar na sua casa.</p>
+              <a href="processo.html" class="btn-ver-mais">Ver mais</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ================= SEÇÃO QUEM SOMOS ================= -->
+      <section
+        id="quem-somos"
+        class="secao-quem-somos"
+        style="
+          padding: 80px 20px;
+          background-color: #faf6f0;
+          text-align: center;
+        "
+      >
+        <div style="max-width: 800px; margin: 0 auto">
+          <h2
+            style="
+              color: var(--cor-marrom-principal, #3b1d10);
+              font-size: 2.2rem;
+              margin-bottom: 20px;
+            "
+          >
+            Quem Somos
+          </h2>
+          <p
+            style="
+              color: #555;
+              font-size: 1.1rem;
+              line-height: 1.6;
+              margin-bottom: 15px;
+            "
+          >
+            A <strong>Cacauê</strong> nasceu da paixão por transformar o
+            verdadeiro cacau brasileiro em momentos de puro prazer e conexão.
+            Valorizamos a origem rastreável, o comércio justo com os produtores
+            locais e a produção artesanal rigorosa.
+          </p>
+          <p style="color: #555; font-size: 1.1rem; line-height: 1.6">
+            Nosso compromisso é entregar chocolates e derivados com alma,
+            respeitando o tempo da natureza e oferecendo sabor genuíno da
+            colheita até a sua casa.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= SEÇÃO CONTATO ================= -->
+      <section
+        id="contato"
+        class="secao-contato"
+        style="
+          padding: 80px 20px;
+          background-color: #ffffff;
+          text-align: center;
+        "
+      >
+        <div style="max-width: 600px; margin: 0 auto">
+          <h2
+            style="
+              color: var(--cor-marrom-principal, #3b1d10);
+              font-size: 2.2rem;
+              margin-bottom: 20px;
+            "
+          >
+            Entre em Contato
+          </h2>
+          <p style="color: #555; font-size: 1.1rem; margin-bottom: 30px">
+            Ficou com alguma dúvida sobre nossos produtos, pedidos ou parcerias?
+            Fale com a gente!
+          </p>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 15px;
+              font-size: 1.1rem;
+              color: #444;
+            "
+          >
+            <p>📧 <strong>E-mail:</strong> contato@cacaue.com.br</p>
+            <p>📱 <strong>WhatsApp:</strong> (34) 99999-9999</p>
+            <p>📍 <strong>Localização:</strong> Uberlândia - MG</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Cacauê. Todos os direitos reservados.</p>
+    </footer>
+    <script src="index.js"></script>
+    <script src="carrinho.js"></script>
+  </body>
+</html>
