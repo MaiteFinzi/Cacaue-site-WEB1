@@ -1055,3 +1055,162 @@ footer {
     font-size: 0.8rem;
   }
 }
+
+/* ================= SEÇÃO QUEM SOMOS ================= */
+
+.secao-quem-somos {
+  padding: 55px 5%;
+  background-color: #faf6f0;
+  text-align: left;
+}
+
+.quem-somos-container {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+/* Apresentação da marca */
+
+.quem-somos-apresentacao {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 45px;
+  margin-bottom: 50px;
+}
+
+.imagem-quem-somos {
+  display: block;
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+}
+
+.quem-somos-texto {
+  max-width: none;
+  margin: 0;
+}
+
+.subtitulo-quem-somos {
+  display: block;
+  margin-bottom: 8px;
+  color: #8a603d;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.quem-somos-texto h2 {
+  margin: 0 0 22px;
+  color: var(--cor-marrom-principal, #5c2d18);
+  font-size: 2.2rem;
+  text-align: left;
+}
+
+.quem-somos-texto p {
+  margin: 0 0 14px;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.quem-somos-texto strong {
+  color: #6b2a14;
+}
+
+/* Missão, visão e valores */
+
+.institucional-cacaue {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.bloco-institucional {
+  padding: 28px;
+  background-color: #fff;
+  border: 1px solid #e6ded6;
+  border-top: 4px solid #8a603d;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(59, 29, 16, 0.05);
+}
+
+.institucional-numero {
+  display: block;
+  margin-bottom: 16px;
+  color: #b69a7e;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.bloco-institucional h3 {
+  margin: 0 0 14px;
+  color: var(--cor-marrom-principal, #5c2d18);
+  font-size: 1.25rem;
+  text-align: left;
+}
+
+.bloco-institucional p,
+.bloco-institucional li {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.bloco-institucional p {
+  margin: 0;
+  text-align: left;
+}
+
+.bloco-institucional ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.bloco-institucional li {
+  margin-bottom: 8px;
+}
+
+.bloco-institucional li:last-child {
+  margin-bottom: 0;
+}
+
+.bloco-institucional li strong {
+  color: #6b2a14;
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+  .secao-quem-somos {
+    padding: 35px 20px;
+  }
+
+  .quem-somos-apresentacao {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 35px;
+  }
+
+  .imagem-quem-somos {
+    height: 260px;
+  }
+
+  .quem-somos-texto h2 {
+    font-size: 1.9rem;
+  }
+
+  .institucional-cacaue {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .bloco-institucional {
+    padding: 24px;
+  }
+}
