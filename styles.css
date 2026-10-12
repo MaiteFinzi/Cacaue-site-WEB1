@@ -4,6 +4,16 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+:root {
+  --cor-fundo-site: #fcfbfa;
+  --cor-fundo-cartao: #ffffff;
+  --cor-marrom-principal: #5c2d18;
+  --cor-verde-destaque: #1b5e20;
+  --cor-texto-principal: #333333;
+  --cor-borda-sutil: #e2ded9;
+}
+
 html {
   height: 100%;
 }
@@ -168,46 +178,7 @@ main {
   margin-bottom: 20px;
 }
 
-/*
-.filtros-container {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
-}
-
-.filtro-btn {
-  background-color: #fff;
-  border: 1px solid #e6ded6;
-  padding: 8px 18px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: #4a3b32;
-  font-weight: 500;
-}
-
-.filtro-btn.ativo,
-.filtro-btn:hover {
-  background-color: #6b2a14;
-  color: #fff;
-  border-color: #6b2a14;
-}/*
-
-.categoria-titulo {
-  margin-bottom: 20px;
-}
-
-.categoria-titulo h3 {
-  font-size: 1.3rem;
-  color: #4a3b32;
-}
-
-.categoria-titulo span {
-  font-size: 0.85rem;
-  color: #8c8275;
-}
-
-/* Grelha usando Grid (3 colunas de produtos + 1 coluna de destaque) */
+/* Grid (3 colunas de produtos + 1 coluna de destaque) */
 .produtos-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -373,7 +344,7 @@ main {
 
 .barra-progresso-fill {
   height: 100%;
-  background-color: #4b2e2b; /* Tom de marrom escuro do cacau */
+  background-color: #4b2e2b;
   border-radius: 3px;
 }
 
@@ -483,7 +454,6 @@ main {
   white-space: nowrap;
 }
 
-/* Rodapé / Totais */
 .carrinho-rodape {
   display: flex;
   flex-direction: column;
@@ -511,13 +481,13 @@ main {
 }
 
 .total-geral span:last-child {
-  color: #4b2e2b; /* Destaque no preço total */
+  color: #4b2e2b;
 }
 
 /* Botões de Ação */
 .botao-checkout {
   width: 100%;
-  background-color: #4b2e2b; /* Marrom escuro da marca */
+  background-color: #4b2e2b;
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -602,28 +572,6 @@ main {
   font-size: 0.8rem;
   color: #4a3b32;
   text-decoration: none;
-}
-
-:root {
-  --cor-fundo-site: #fcfbfa; /* Bege claro suave */
-  --cor-fundo-cartao: #ffffff;
-  --cor-marrom-principal: #5c2d18; /* Marrom chocolate forte */
-  --cor-verde-destaque: #1b5e20; /* Verde elegante do site */
-  --cor-texto-principal: #333333;
-  --cor-borda-sutil: #e2ded9;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-  background-color: var(--cor-fundo-site);
-  color: var(--cor-texto-principal);
-  padding-bottom: 50px;
 }
 
 /* Cabeçalho */
