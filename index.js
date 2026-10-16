@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const gridProdutos = document.querySelector(".produtos-grid");
-  const botoesFiltro = document.querySelectorAll(".filtro-btn");
   const campoPesquisa = document.getElementById("campo-pesquisa"); // ID da sua barra de pesquisa
-  const pesquisaIcone = document.querySelector(".pesquisa-icone"); // ID do botão/lupa (opcional)
+  const pesquisaIcone = document.querySelector(".pesquisa-icone"); // ID do botão/lupa
 
   if (!gridProdutos) return;
 
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Função genérica para filtrar todos os cards da tela
+  // Função para filtrar todos os cards da tela
   function executarFiltro(termoBusca) {
     const termo = termoBusca.toLowerCase().trim();
     const todosCards = gridProdutos.querySelectorAll(".card-produto");
@@ -44,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const titulo = card.querySelector("h4").textContent.toLowerCase();
       const descricao = card.querySelector(".peso").textContent.toLowerCase();
 
-      // Se o título ou a categoria/peso incluírem o termo pesquisado, exibe; senão, oculta
+      // Se o título ou a categoria incluírem o termo pesquisado, exibe; senão, oculta
       if (titulo.includes(termo) || descricao.includes(termo)) {
         card.style.display = "block";
       } else {
@@ -53,25 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 2. FILTRAR AO CLICAR NOS BOTÕES (Mais vendidos, Chocolates, etc.)
-  botoesFiltro.forEach((botao) => {
-    botao.addEventListener("click", () => {
-      // Remove a classe 'ativo' de todos e coloca no clicado
-      botoesFiltro.forEach((b) => b.classList.remove("ativo"));
-      botao.classList.add("ativo");
-
-      const categoriaTexto = botao.textContent.toLowerCase();
-
-      // Se clicar em "Mais vendidos", exibe todos (ou pode criar regra específica)
-      if (categoriaTexto.includes("mais vendidos")) {
-        executarFiltro(""); // Limpa o filtro e mostra tudo
-      } else {
-        executarFiltro(categoriaTexto);
-      }
-    });
-  });
-
-  // 3. FILTRAR PELA BARRA DE PESQUISA (Apertando ENTER)
+  // Filtrar apertando Enter
   if (campoPesquisa) {
     campoPesquisa.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
@@ -81,10 +62,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. FILTRAR CLICANDO NA LUPA / BOTÃO DE PESQUISA
+  // Filtrar clicando na lupa
   if (pesquisaIcone && campoPesquisa) {
     pesquisaIcone.addEventListener("click", () => {
       executarFiltro(campoPesquisa.value);
+    });
+  }
+  // Filtrar em tempo real
+  if (campoPesquisa) {
+    campoPesquisa.addEventListener("input", (e) => {
+      executarFiltro(e.target.value);
     });
   }
 });
