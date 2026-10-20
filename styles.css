@@ -1133,7 +1133,7 @@ footer {
 }
 
 /* Responsividade */
-
+/*
 @media (max-width: 768px) {
   .secao-quem-somos {
     padding: 35px 20px;
@@ -1160,5 +1160,76 @@ footer {
 
   .bloco-institucional {
     padding: 24px;
+  }
+}
+*/
+/*modal*/
+/* Estilo do Modal Flutuante Global */
+.modal-notificacao-flutuante {
+  position: fixed;
+  top: 80px; /* Logo abaixo do header */
+  right: 20px;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  font-size: 0.95rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  pointer-events: none;
+}
+
+.modal-notificacao-flutuante.sucesso {
+  background-color: #3b1d10; /* Marrom Cacauê */
+}
+
+.modal-notificacao-flutuante.erro {
+  background-color: #c0392b; /* Vermelho alerta */
+}
+
+.modal-notificacao-flutuante.mostrar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= AJUSTES DE RESPONSIVIDADE PARA O ADMIN ================= */
+
+@media (max-width: 768px) {
+  /* 1. Ajuste das margens do conteúdo principal no celular */
+  .conteudo-principal {
+    margin: 15px 10px;
+    padding: 0 5px;
+  }
+
+  /* 2. Formulários com largura total e padding confortável */
+  .secao-formulario,
+  .secao-tabela {
+    padding: 15px 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+
+  /* 3. Garante que os campos de input ocupem 100% da largura */
+  .formulario-em-grade {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .grupo-campo-formulario input {
+    width: 100%;
+  }
+
+  /* 4. Botão de salvar ocupando toda a largura para facilitar o toque */
+  .rodape-formulario {
+    justify-content: stretch;
+  }
+
+  .botao-salvar-registro {
+    width: 100%;
+    text-align: center;
   }
 }

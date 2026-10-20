@@ -18,7 +18,7 @@ if (formularioLogin) {
       // Redireciona para a página de administração
       window.location.href = "admin.html";
     } else {
-      alert("Usuário ou senha incorretos!");
+      mostrarNotificacao("Usuário ou senha incorretos!", "erro");
     }
   });
 }

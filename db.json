@@ -1,12 +1,12 @@
 {
   "produtos": [
     {
-      "id": "2",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
       "nome": "Nibs de Cacau Orgânico",
-      "preco": "22,50",
+      "categoria": "Grãos",
+      "preco": "23,03",
       "quantidade": "15",
-      "categoria": "Grãos"
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "2"
     },
     {
       "id": "3",
@@ -23,15 +23,31 @@
       "quantidade": "9",
       "imagem": "./imagens/logo_Cacaue_arvore.png",
       "id": "uurQN00Jq1A"
+    },
+    {
+      "nome": "brigadeiro",
+      "categoria": "chocolate",
+      "preco": "9,00",
+      "quantidade": "3",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "78S1jcGD10I"
+    },
+    {
+      "nome": "brigadeiro",
+      "categoria": "Grãos",
+      "preco": "9,00",
+      "quantidade": "9",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "OzAAZTVeywk"
     }
   ],
   "fornecedores": [
     {
-      "id": "2",
-      "cnpj": "98.765.432/0001-12",
-      "nome": "Cooperativa Cacau Sul",
+      "nome": "Cooperativa Cacau NOrte",
       "contato": "(11) 97777-2222",
-      "produtoFornecido": "Cacau em Pó e Nibs"
+      "cnpj": "98.765.432/0001-12",
+      "produto": "undefined",
+      "id": "2"
     },
     {
       "id": "3",

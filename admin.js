@@ -80,7 +80,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         if (resposta.ok) {
-          alert(
+          mostrarNotificacao(
             idProdutoEmEdicao !== null
               ? "Produto atualizado com sucesso!"
               : "Produto cadastrado com sucesso!",
@@ -88,13 +88,16 @@ window.addEventListener("DOMContentLoaded", () => {
           idProdutoEmEdicao = null;
           botaoSalvarProduto.textContent = "Salvar Produto";
           formProduto.reset();
-          carregarProdutosTabela();
+
+          setTimeout(() => {
+            carregarProdutosTabela();
+          }, 10000);
         } else {
-          alert("Erro ao salvar produto no servidor.");
+          mostrarNotificacao("Erro ao salvar produto no servidor.");
         }
       } catch (erro) {
         console.error("Erro na requisição de produtos:", erro);
-        alert("Erro de conexão com o servidor local.");
+        mostrarNotificacao("Erro de conexão com o servidor local.");
       }
     });
 
@@ -112,10 +115,10 @@ window.addEventListener("DOMContentLoaded", () => {
               method: "DELETE",
             });
             if (resposta.ok) {
-              alert("Produto excluído com sucesso!");
+              mostrarNotificacao("Produto excluído com sucesso!");
               carregarProdutosTabela();
             } else {
-              alert("Erro ao excluir o produto no servidor.");
+              mostrarNotificacao("Erro ao excluir o produto no servidor.");
             }
           } catch (erro) {
             console.error("Erro ao excluir produto:", erro);
@@ -217,7 +220,7 @@ if (formFornecedor) {
       });
 
       if (resposta.ok) {
-        alert(
+        mostrarNotificacao(
           idFornecedorEmEdicao !== null
             ? "Fornecedor atualizado com sucesso!"
             : "Fornecedor cadastrado com sucesso!",
@@ -227,7 +230,7 @@ if (formFornecedor) {
         formFornecedor.reset();
         carregarFornecedoresTabela();
       } else {
-        alert("Erro ao salvar fornecedor no servidor.");
+        mostrarNotificacao("Erro ao salvar fornecedor no servidor.");
       }
     } catch (erro) {
       console.error("Erro na requisição de fornecedores:", erro);
@@ -248,7 +251,7 @@ if (formFornecedor) {
             method: "DELETE",
           });
           if (resposta.ok) {
-            alert("Fornecedor excluído com sucesso!");
+            mostrarNotificacao("Fornecedor excluído com sucesso!");
             carregarFornecedoresTabela();
           }
         } catch (erro) {

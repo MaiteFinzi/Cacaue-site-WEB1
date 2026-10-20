@@ -31,7 +31,7 @@ function adicionarAoCarrinho(nome, preco, imagem, peso) {
 
   salvarCarrinho();
   atualizarContador();
-  alert(`${nome} foi adicionado ao carrinho!`);
+  mostrarNotificacao(`${nome} foi adicionado ao carrinho!`);
 }
 
 // 3. Atualiza o número da bolinha vermelha no header
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function finalizarCompraWhatsApp() {
   // Verifica se o carrinho está vazio
   if (carrinhoItens.length === 0) {
-    alert("O seu carrinho está vazio!");
+    mostrarNotificacao("O seu carrinho está vazio!");
     return;
   }
 
