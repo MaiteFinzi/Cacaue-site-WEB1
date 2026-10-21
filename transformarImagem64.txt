@@ -1,0 +1,75 @@
+// 2. CADASTRAR (POST) E ATUALIZAR (PUT)
+  if (formProduto) {
+    formProduto.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById("campo-nome-produto").value;
+      const categoria = document.getElementById("campo-categoria").value;
+      const precoInput = document.getElementById("campo-preco").value;
+      const quantidade = document.getElementById("campo-quantidade").value;
+      const inputImg = document.getElementById("campo-img");
+
+      const precoFormatado = precoInput
+        ? parseFloat(precoInput).toFixed(2).replace(".", ",")
+        : "0,00";
+      const qtdFormatada = quantidade ? quantidade : "0";
+
+      const imagemPadrao = "./imagens/logo_Cacaue_arvore.png";
+
+      // Função auxiliar para enviar os dados para o servidor
+      async function enviarDados(imagemFinal) {
+        const dadosProduto = {
+          nome,
+          categoria,
+          preco: precoFormatado,
+          quantidade: qtdFormatada,
+          imagem: imagemFinal,
+        };
+
+        try {
+          let urlEndpoint = API_PRODUTOS;
+          let metodoHttp = "POST";
+
+          if (idProdutoEmEdicao !== null) {
+            urlEndpoint = `${API_PRODUTOS}/${idProdutoEmEdicao}`;
+            metodoHttp = "PUT";
+          }
+
+          const resposta = await fetch(urlEndpoint, {
+            method: metodoHttp,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dadosProduto),
+          });
+
+          if (resposta.ok) {
+            mostrarNotificacao(
+              idProdutoEmEdicao !== null
+                ? "Produto atualizado com sucesso!"
+                : "Produto cadastrado com sucesso!",
+            );
+            idProdutoEmEdicao = null;
+            botaoSalvarProduto.textContent = "Salvar Produto";
+            formProduto.reset();
+            carregarProdutosTabela();
+          } else {
+            mostrarNotificacao("Erro ao salvar produto no servidor.", "erro");
+          }
+        } catch (erro) {
+          console.error("Erro na requisição de produtos:", erro);
+          mostrarNotificacao("Erro de conexão com o servidor local.", "erro");
+        }
+      }
+
+      // Verifica se o usuário selecionou uma imagem
+      if (inputImg.files && inputImg.files[0]) {
+        const leitor = new FileReader();
+        leitor.onload = function (eventoLeitura) {
+          // Converte a imagem para o formato Base64 e envia
+          enviarDados(eventoLeitura.target.result);
+        };
+        leitor.readAsDataURL(inputImg.files[0]);
+      } else {
+        // Se não selecionou nenhuma imagem nova, mantém a padrão ou a anterior
+        enviarDados(imagemPadrao);
+      }
+    });

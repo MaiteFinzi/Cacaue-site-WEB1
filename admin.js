@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
           <td>${prod.nome}</td>
           <td>${prod.categoria}</td>
           <td>R$ ${prod.preco}</td>
-          <td>${prod.quantidade}</td>
+        
           <td>
             <button class="botao-tabela-editar" type="button" data-id="${prod.id}">Editar</button>
             <button class="botao-tabela-excluir" type="button" data-id="${prod.id}">Excluir</button>
@@ -47,21 +47,28 @@ window.addEventListener("DOMContentLoaded", () => {
       const nome = document.getElementById("campo-nome-produto").value;
       const categoria = document.getElementById("campo-categoria").value;
       const precoInput = document.getElementById("campo-preco").value;
-      const quantidade = document.getElementById("campo-quantidade").value;
-
-      const imagemPadrao = "./imagens/logo_Cacaue_arvore.png";
+      //onst quantidade = document.getElementById("campo-quantidade").value;
+      const inputImg = document.getElementById("campo-img");
 
       const precoFormatado = precoInput
         ? parseFloat(precoInput).toFixed(2).replace(".", ",")
         : "0,00";
-      const qtdFormatada = quantidade ? quantidade : "0";
+      //const qtdFormatada = quantidade ? quantidade : "0";
+
+      const imagemPadrao = "./imagens/logo_Cacaue_arvore.png";
+
+      let imagemFinal = imagemPadrao;
+      if (inputImg.files && inputImg.files[0]) {
+        const nomeArquivo = inputImg.files[0].name;
+        imagemFinal = `./imagens/${nomeArquivo}`;
+      }
 
       const dadosProduto = {
         nome,
         categoria,
         preco: precoFormatado,
-        quantidade: qtdFormatada,
-        imagem: imagemPadrao,
+        //quantidade: qtdFormatada,
+        imagem: imagemFinal,
       };
 
       try {
@@ -91,13 +98,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
           setTimeout(() => {
             carregarProdutosTabela();
-          }, 10000);
+          }, 1000);
         } else {
           mostrarNotificacao("Erro ao salvar produto no servidor.");
         }
       } catch (erro) {
         console.error("Erro na requisição de produtos:", erro);
-        mostrarNotificacao("Erro de conexão com o servidor local.");
+        mostrarNotificacao("Erro de conexão com o servidor local.", "erro");
       }
     });
 
@@ -137,8 +144,8 @@ window.addEventListener("DOMContentLoaded", () => {
           linha.children[3].textContent;
         document.getElementById("campo-preco").value =
           linha.children[4].textContent.replace("R$ ", "").replace(",", ".");
-        document.getElementById("campo-quantidade").value =
-          linha.children[5].textContent;
+        //document.getElementById("campo-quantidade").value =
+        //  linha.children[5].textContent;
 
         botaoSalvarProduto.textContent = "Atualizar Produto";
         document
