@@ -5,13 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!gridProdutos) return;
 
-  const API_PRODUTOS = "http://localhost:3000/produtos";
+  const API_PRODUTOS = "https://landing-unhearing-visible.ngrok-free.dev/produto";
   const cardDestaque = gridProdutos.querySelector(".card-destaque-vertical");
 
   // 1. CARREGAR PRODUTOS DA API (db.json) NA HOME
   async function carregarProdutosHome() {
     try {
-      const resposta = await fetch(API_PRODUTOS);
+      const resposta = await fetch(API_PRODUTOS, {
+        headers: {
+          "ngrok-skip-browser-warning": "true"
+        }
+      });
       if (!resposta.ok) throw new Error("Erro ao buscar produtos.");
 
       const produtos = await resposta.json();
@@ -28,8 +32,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const categoriaTexto = prod.categoria || "Geral";
         const nomeTexto = prod.nome || "Produto";
         const precoTexto = prod.preco || "0,00";
-        const imagemSrc = prod.imagem || "./imagens/logo_Cacaue_arvore.png";
         const quantidadeTexto = prod.quantidade || "1";
+
+        let imagemSrc = "./imagens/logo_Cacaue_arvore.png"; // Imagem padrão caso não exista
+        if (prod.imagem) {
+          // Verifica se o back-end já envia o prefixo ou se é apenas o código base64 puro
+          if (prod.imagem.startsWith("data:image")) {
+            imagemSrc = prod.imagem;
+          } else {
+            // Ajuste para 'image/jpeg' ou 'image/png' de acordo com o formato salvo no banco
+            imagemSrc = `data:image/jpeg;base64,${prod.imagem}`;
+          }
+        }
 
         cardDiv.setAttribute("data-categoria", categoriaTexto.toLowerCase());
         cardDiv.setAttribute("data-nome", nomeTexto.toLowerCase());
