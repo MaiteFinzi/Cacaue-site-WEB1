@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!gridProdutos) return;
 
-  const API_PRODUTOS = "https://landing-unhearing-visible.ngrok-free.dev/produto";
+  const API_PRODUTOS =
+    "https://landing-unhearing-visible.ngrok-free.dev/produto";
   const cardDestaque = gridProdutos.querySelector(".card-destaque-vertical");
 
   // 1. CARREGAR PRODUTOS DA API (db.json) NA HOME
@@ -13,8 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const resposta = await fetch(API_PRODUTOS, {
         headers: {
-          "ngrok-skip-browser-warning": "true"
-        }
+          "ngrok-skip-browser-warning": "true",
+        },
       });
       if (!resposta.ok) throw new Error("Erro ao buscar produtos.");
 

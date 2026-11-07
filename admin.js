@@ -5,22 +5,37 @@ window.addEventListener("DOMContentLoaded", () => {
   const botaoSalvarProduto = document.getElementById("botao-salvar-produto");
   let idProdutoEmEdicao = null;
 
-  const API_PRODUTOS = "http://localhost:3000/produtos";
+  const API_PRODUTOS =
+    "https://landing-unhearing-visible.ngrok-free.dev/produto";
+
+  const converterParaBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
 
   // 1. CARREGAR PRODUTOS (GET)
   async function carregarProdutosTabela() {
     try {
-      const resposta = await fetch(API_PRODUTOS);
+      const resposta = await fetch(API_PRODUTOS, {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
+      });
       if (!resposta.ok) throw new Error("Erro ao buscar produtos.");
 
       const produtos = await resposta.json();
       corpoTabelaProdutos.innerHTML = "";
 
       produtos.forEach((prod, index) => {
+        imagemSrc = `data:image/jpeg;base64,${prod.imagem}`;
         const novaLinha = document.createElement("tr");
         novaLinha.innerHTML = `
           <td>${String(index + 1).padStart(2, "0")}</td>
-          <td><img src="${prod.imagem || "./imagens/logo_Cacaue_arvore.png"}" alt="Foto" class="miniatura-tabela" /></td>
+          <td><img src="${imagemSrc || "./imagens/logo_Cacaue_arvore.png"}" alt="Foto" class="miniatura-tabela" /></td>
           <td>${prod.nome}</td>
           <td>${prod.categoria}</td>
           <td>R$ ${prod.preco}</td>
@@ -50,26 +65,32 @@ window.addEventListener("DOMContentLoaded", () => {
       //onst quantidade = document.getElementById("campo-quantidade").value;
       const inputImg = document.getElementById("campo-img");
 
-      const precoFormatado = precoInput
-        ? parseFloat(precoInput).toFixed(2).replace(".", ",")
-        : "0,00";
+      // const precoFormatado = precoInput
+      //  ? parseFloat(precoInput).toFixed(2).replace(".", ",")
+      //   : "0,00";
       //const qtdFormatada = quantidade ? quantidade : "0";
+
+      //tratamento de imagem para base64
 
       const imagemPadrao = "./imagens/logo_Cacaue_arvore.png";
 
       let imagemFinal = imagemPadrao;
       if (inputImg.files && inputImg.files[0]) {
-        const nomeArquivo = inputImg.files[0].name;
-        imagemFinal = `./imagens/${nomeArquivo}`;
+        const imagemBase64 = await converterParaBase64(inputImg.files[0]);
+        const base64Limpo = imagemBase64.split(",")[1];
+        imagemFinal = base64Limpo;
       }
 
       const dadosProduto = {
         nome,
         categoria,
-        preco: precoFormatado,
+        preco: precoInput,
+        // preco: precoFormatado,
         //quantidade: qtdFormatada,
         imagem: imagemFinal,
       };
+
+      console.log(dadosProduto);
 
       try {
         let urlEndpoint = API_PRODUTOS;
@@ -86,12 +107,16 @@ window.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify(dadosProduto),
         });
 
+        console.log(idProdutoEmEdicao);
         if (resposta.ok) {
           mostrarNotificacao(
             idProdutoEmEdicao !== null
               ? "Produto atualizado com sucesso!"
               : "Produto cadastrado com sucesso!",
           );
+
+          console.log(idProdutoEmEdicao);
+
           idProdutoEmEdicao = null;
           botaoSalvarProduto.textContent = "Salvar Produto";
           formProduto.reset();
