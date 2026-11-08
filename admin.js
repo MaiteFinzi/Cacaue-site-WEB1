@@ -191,12 +191,18 @@ const botaoSalvarFornecedor = document.getElementById(
 );
 let idFornecedorEmEdicao = null;
 
-const API_FORNECEDORES = "http://localhost:3000/fornecedores";
+const API_FORNECEDORES =
+  "https://landing-unhearing-visible.ngrok-free.dev/fornecedor";
 
 // Função para buscar e listar os fornecedores do db.json na tabela
 async function carregarFornecedoresTabela() {
   try {
-    const resposta = await fetch(API_FORNECEDORES);
+    const resposta = await fetch(API_FORNECEDORES, {
+      headers: {
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "true",
+      },
+    });
     if (!resposta.ok) throw new Error("Erro ao buscar fornecedores.");
 
     const fornecedores = await resposta.json();
