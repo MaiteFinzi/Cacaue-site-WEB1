@@ -53,6 +53,97 @@
       "preco": "2,00",
       "imagem": "./imagens/brigadeiro-cacau-100.png",
       "id": "miwD86sxxPo"
+    },
+    {
+      "nomeVal": "brigadeiro",
+      "categoria": "",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "Ycx0LUA0R_w"
+    },
+    {
+      "nomeVal": "Amêndoa de Cacau Caramelizada",
+      "categoria": "",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "nVZqRF8neEc"
+    },
+    {
+      "nomeVal": "Amêndoa de Cacau Caramelizada",
+      "categoria": "",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "zTL-gPAopzE"
+    },
+    {
+      "nomeVal": "brigadeiro",
+      "categoria": "",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "-4R54VAN1BI"
+    },
+    {
+      "nomeVal": "brigadeiro",
+      "categoria": "Grãos",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "n6eHP8_WGAY"
+    },
+    {
+      "nomeVal": "brigadeiro",
+      "categoria": "",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "2dF5yMMQVJ0"
+    },
+    {
+      "nomeVal": "brigadeiro",
+      "categoria": "chocolate",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "iEpr4qSTKUs"
+    },
+    {
+      "nomeVal": "brigadeiro",
+      "categoria": "",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "GRUDwfeHkjk"
+    },
+    {
+      "nomeVal": "brigadeiro",
+      "categoria": "",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "TPUEoOIANtc"
+    },
+    {
+      "nomeVal": "brigadeiro",
+      "categoria": "",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "LQQ6lK53EsM"
+    },
+    {
+      "nomeVal": "brigadeiro",
+      "categoria": "Grãos",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "unoXsIB2EyI"
+    },
+    {
+      "nomeVal": "brigadeiro",
+      "categoria": "Grãos",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "z-d95uiQYWY"
+    },
+    {
+      "nomeVal": "brigadeiro",
+      "categoria": "",
+      "preco": "",
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "DcpfO-c3kjU"
     }
   ],
   "fornecedores": [

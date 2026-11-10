@@ -5,17 +5,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!gridProdutos) return;
 
-  const API_PRODUTOS =
-    "https://landing-unhearing-visible.ngrok-free.dev/produto";
+  // const API_PRODUTOS =
+  //  "https://landing-unhearing-visible.ngrok-free.dev/produto";
+
+  const API_PRODUTOS = "http://localhost:3000/produtos";
+
   const cardDestaque = gridProdutos.querySelector(".card-destaque-vertical");
 
   // 1. CARREGAR PRODUTOS DA API (db.json) NA HOME
   async function carregarProdutosHome() {
     try {
       const resposta = await fetch(API_PRODUTOS, {
-        headers: {
-          "ngrok-skip-browser-warning": "true",
-        },
+        // headers: {
+        //   "ngrok-skip-browser-warning": "true",
+        // },
       });
       if (!resposta.ok) throw new Error("Erro ao buscar produtos.");
 
@@ -50,9 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardDiv.setAttribute("data-nome", nomeTexto.toLowerCase());
 
         // Converte o preço de string ("15,90") para número para o carrinho (ex: 15.90)
-        const precoNumerico = parseFloat(
-          String(precoTexto).replace(".", "").replace(",", "."),
-        );
+        const precoNumerico = parseFloat(String(precoTexto).replace(",", "."));
 
         cardDiv.innerHTML = `
           <img src="${imagemSrc}" alt="${nomeTexto}" class="img-produto" />

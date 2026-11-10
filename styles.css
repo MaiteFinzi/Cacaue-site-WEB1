@@ -673,6 +673,7 @@ main {
   border-color: var(--cor-marrom-principal);
 }
 
+/*--------------------------Formulario-------------------------*/
 /* Formulário em Grade (Grid) */
 .secao-formulario,
 .secao-tabela {
@@ -723,14 +724,14 @@ main {
   grid-column: 1 / -1;
 }
 
-grupo-campo-formulario input[type="file"] {
+/*grupo-campo-formulario input[type="file"] {
   background-color: var(--cor-fundo-site);
   padding: 8px;
   border: 1px dashed var(--cor-marrom-principal);
   border-radius: 6px;
   cursor: pointer;
   color: var(--cor-texto-principal);
-}
+}*/
 
 /* Estiliza o botão interno "Escolher arquivo" nos navegadores compatíveis */
 .grupo-campo-formulario input[type="file"]::file-selector-button {
@@ -757,6 +758,25 @@ grupo-campo-formulario input[type="file"] {
   grid-column: 1 / -1;
   display: flex;
   justify-content: flex-end;
+}
+
+/* Mensagem de erro*/
+/* Esconde a mensagem de erro por padrão */
+.mensagem-erro {
+  display: none;
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* Mostra quando recebe a classe 'visivel' */
+.mensagem-erro.visivel {
+  display: block;
+}
+
+/* Opcional: borda vermelha no input com erro */
+input.campo-invalido {
+  border-color: #e74c3c;
 }
 
 .botao-salvar-registro {
@@ -926,7 +946,7 @@ footer {
 
 /* ================= MEDIA QUERIES (RESPONSIVIDADE) ================= */
 
-/* Tablets e Ecrãs Médios (até 1024px) */
+/* Tablets e telas Médias (até 1024px) */
 @media (max-width: 1024px) {
   .produtos-grid {
     grid-template-columns: repeat(2, 1fr); /* Muda de 4 para 2 colunas */
@@ -937,7 +957,7 @@ footer {
   }
 }
 
-/* Telemóveis e Ecrãs Pequenos (até 768px) */
+/* Celulares e telas Pequenas (até 768px) */
 @media (max-width: 768px) {
   /* 1. Ajuste do Cabeçalho */
   header {

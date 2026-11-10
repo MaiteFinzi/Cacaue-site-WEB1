@@ -71,7 +71,7 @@
       <!-- ================= SEÇÃO DE PRODUTOS ================= -->
       <section id="secao-formulario-produto" class="secao-formulario">
         <h3>Cadastro e Atualização de Produtos</h3>
-        <form id="form-produto" class="formulario-em-grade">
+        <form id="form-produto" class="formulario-em-grade" novalidate>
           <div class="grupo-campo-formulario">
             <label for="campo-nome-produto">Nome do Produto</label>
             <input
@@ -80,6 +80,9 @@
               placeholder="Ex: Trufa de Cacau"
               required
             />
+            <span class="mensagem-erro" id="erro-nome-produto"
+              >Campo obrigatório</span
+            >
           </div>
 
           <div class="grupo-campo-formulario">
@@ -90,6 +93,9 @@
               placeholder="Ex: Chocolates"
               required
             />
+            <span class="mensagem-erro" id="erro-categoria"
+              >Campo obrigatório</span
+            >
           </div>
 
           <div class="grupo-campo-formulario">
@@ -100,6 +106,7 @@
               step="0.01"
               placeholder="Ex: 15.90"
             />
+            <span class="mensagem-erro" id="erro-preco">Campo obrigatório</span>
           </div>
           <!--
           <div class="grupo-campo-formulario">

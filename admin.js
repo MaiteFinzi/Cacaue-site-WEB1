@@ -5,8 +5,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const botaoSalvarProduto = document.getElementById("botao-salvar-produto");
   let idProdutoEmEdicao = null;
 
-  const API_PRODUTOS =
-    "https://landing-unhearing-visible.ngrok-free.dev/produto";
+  //const API_PRODUTOS =
+  //  "https://landing-unhearing-visible.ngrok-free.dev/produto";
+
+  const API_PRODUTOS = "http://localhost:3000/produtos";
 
   const converterParaBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -21,9 +23,9 @@ window.addEventListener("DOMContentLoaded", () => {
   async function carregarProdutosTabela() {
     try {
       const resposta = await fetch(API_PRODUTOS, {
-        headers: {
-          "ngrok-skip-browser-warning": "true",
-        },
+        // headers: {
+        //  "ngrok-skip-browser-warning": "true",
+        //},
       });
       if (!resposta.ok) throw new Error("Erro ao buscar produtos.");
 
@@ -59,16 +61,75 @@ window.addEventListener("DOMContentLoaded", () => {
     formProduto.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const nome = document.getElementById("campo-nome-produto").value;
+      const inputNome = document.getElementById("campo-nome-produto");
+      const erroNome = document.getElementById("erro-nome-produto");
+
+      const inputCategoria = document.getElementById("campo-categoria");
+      const erroCategoria = document.getElementById("erro-categoria");
+
+      const inputPreco = document.getElementById("campo-preco");
+      const erroPreco = document.getElementById("erro-preco");
+
+      inputNome.addEventListener("input", () => {
+        if (inputNome.value.trim() !== "") {
+          erroNome.classList.remove("visivel");
+          inputNome.classList.remove("campo-invalido");
+        }
+
+        if (inputCategoria && inputCategoria.value.trim() === "") {
+          if (erroCategoria) erroCategoria.classList.add("visivel");
+          inputCategoria.classList.add("campo-invalido");
+          formValido = false;
+        } else if (inputCategoria) {
+          if (erroCategoria) erroCategoria.classList.remove("visivel");
+          inputCategoria.classList.remove("campo-invalido");
+        }
+
+        if (!formValido) {
+          return;
+        }
+      });
+
+      const nomeVal = inputNome.value.trim();
+      // Validação do campo Nome
+      if (nomeVal === "") {
+        erroNome.classList.add("visivel");
+        inputNome.classList.add("campo-invalido");
+        return; // Interrompe o envio se estiver vazio
+      }
+
+      const categoriaVal = inputCategoria.value.trim();
+
+      if (categoriaVal === "") {
+        if (erroCategoria) erroCategoria.classList.add("visivel");
+        if (inputCategoria) inputCategoria.classList.add("campo-invalido");
+        formValido = false;
+      } else if (inputCategoria) {
+        if (erroCategoria) erroCategoria.classList.remove("visivel");
+        inputCategoria.classList.remove("campo-invalido");
+      }
+
+      const precoVal = inputPreco.value.trim();
+
+      if (precoVal === "") {
+        if (erroPreco) erroPreco.classList.add("visivel");
+        if (inputPreco) inputPreco.classList.add("campo-invalido");
+        formValido = false;
+      } else if (inputPreco) {
+        if (erroPreco) erroPreco.classList.remove("visivel");
+        inputPreco.classList.remove("campo-invalido");
+      }
+      //const nome = document.getElementById("campo-nome-produto").value;
+
       const categoria = document.getElementById("campo-categoria").value;
       const precoInput = document.getElementById("campo-preco").value;
-      //onst quantidade = document.getElementById("campo-quantidade").value;
+      //const quantidade = document.getElementById("campo-quantidade").value;
       const inputImg = document.getElementById("campo-img");
 
       // const precoFormatado = precoInput
-      //  ? parseFloat(precoInput).toFixed(2).replace(".", ",")
-      //   : "0,00";
-      //const qtdFormatada = quantidade ? quantidade : "0";
+      //   ? parseFloat(precoInput).toFixed(2).replace(".", ",")
+      //  : "0,00";
+      // const qtdFormatada = quantidade ? quantidade : "0";
 
       //tratamento de imagem para base64
 
@@ -82,7 +143,7 @@ window.addEventListener("DOMContentLoaded", () => {
       }
 
       const dadosProduto = {
-        nome,
+        nomeVal,
         categoria,
         preco: precoInput,
         // preco: precoFormatado,
@@ -191,8 +252,10 @@ const botaoSalvarFornecedor = document.getElementById(
 );
 let idFornecedorEmEdicao = null;
 
-const API_FORNECEDORES =
-  "https://landing-unhearing-visible.ngrok-free.dev/fornecedor";
+//const API_FORNECEDORES =
+//  "https://landing-unhearing-visible.ngrok-free.dev/fornecedor";
+
+const API_FORNECEDORES = "http://localhost:3000/fornecedores";
 
 // Função para buscar e listar os fornecedores do db.json na tabela
 async function carregarFornecedoresTabela() {
