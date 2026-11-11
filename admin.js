@@ -143,13 +143,13 @@ window.addEventListener("DOMContentLoaded", () => {
       }
 
       const dadosProduto = {
-        nomeVal,
-        categoriaVal,
-        precoVal,
-        imagemFinal,
+        nome: nomeVal,
+        categoria: categoriaVal,
+        preco: precoVal,
+        imagem: imagemFinal,
       };
 
-      console.log(dadosProduto);
+      console.log("DADOS PRODUTO:", dadosProduto);
 
       try {
         let urlEndpoint = API_PRODUTOS;
