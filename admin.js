@@ -58,78 +58,78 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // 2. CADASTRAR (POST) E ATUALIZAR (PUT)
   if (formProduto) {
+    const inputNome = document.getElementById("campo-nome-produto");
+    const erroNome = document.getElementById("erro-produto");
+
+    const inputCategoria = document.getElementById("campo-categoria");
+    const erroCategoria = document.getElementById("erro-categoria");
+
+    const inputPreco = document.getElementById("campo-preco");
+    const erroPreco = document.getElementById("erro-preco");
+
+    inputNome.addEventListener("input", () => {
+      if (inputNome.value.trim() !== "") {
+        erroNome?.classList.remove("visivel");
+        inputNome.classList.remove("campo-invalido");
+      }
+    });
+
+    inputCategoria.addEventListener("input", () => {
+      if (inputCategoria.value.trim() !== "") {
+        erroCategoria?.classList.remove("visivel");
+        inputCategoria.classList.remove("campo-invalido");
+      }
+    });
+
+    inputPreco.addEventListener("input", () => {
+      if (inputPreco.value.trim() !== "" && parseFloat(inputPreco.value) > 0) {
+        erroPreco?.classList.remove("visivel");
+        inputPreco.classList.remove("campo-invalido");
+      }
+    });
+
+    // --- Validação ao clicar em Salvar (Submit) ---
     formProduto.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const inputNome = document.getElementById("campo-nome-produto");
-      const erroNome = document.getElementById("erro-nome-produto");
-
-      const inputCategoria = document.getElementById("campo-categoria");
-      const erroCategoria = document.getElementById("erro-categoria");
-
-      const inputPreco = document.getElementById("campo-preco");
-      const erroPreco = document.getElementById("erro-preco");
-
-      inputNome.addEventListener("input", () => {
-        if (inputNome.value.trim() !== "") {
-          erroNome.classList.remove("visivel");
-          inputNome.classList.remove("campo-invalido");
-        }
-
-        if (inputCategoria && inputCategoria.value.trim() === "") {
-          if (erroCategoria) erroCategoria.classList.add("visivel");
-          inputCategoria.classList.add("campo-invalido");
-          formValido = false;
-        } else if (inputCategoria) {
-          if (erroCategoria) erroCategoria.classList.remove("visivel");
-          inputCategoria.classList.remove("campo-invalido");
-        }
-
-        if (!formValido) {
-          return;
-        }
-      });
-
       const nomeVal = inputNome.value.trim();
-      // Validação do campo Nome
+      const categoriaVal = inputCategoria.value.trim();
+      const precoVal = inputPreco.value.trim();
+
+      // 1. Valida o Nome
       if (nomeVal === "") {
-        erroNome.classList.add("visivel");
+        erroNome?.classList.add("visivel");
         inputNome.classList.add("campo-invalido");
-        return; // Interrompe o envio se estiver vazio
+        inputNome.focus();
+        return; // Para aqui e não mostra os outros erros ainda
+      } else {
+        erroNome?.classList.remove("visivel");
+        inputNome.classList.remove("campo-invalido");
       }
 
-      const categoriaVal = inputCategoria.value.trim();
-
+      // 2. Valida a Categoria (só chega aqui se o Nome estiver preenchido)
       if (categoriaVal === "") {
-        if (erroCategoria) erroCategoria.classList.add("visivel");
-        if (inputCategoria) inputCategoria.classList.add("campo-invalido");
-        formValido = false;
-      } else if (inputCategoria) {
-        if (erroCategoria) erroCategoria.classList.remove("visivel");
+        erroCategoria?.classList.add("visivel");
+        inputCategoria.classList.add("campo-invalido");
+        inputCategoria.focus();
+        return; // Para aqui e não mostra o erro do Preço ainda
+      } else {
+        erroCategoria?.classList.remove("visivel");
         inputCategoria.classList.remove("campo-invalido");
       }
 
-      const precoVal = inputPreco.value.trim();
-
-      if (precoVal === "") {
-        if (erroPreco) erroPreco.classList.add("visivel");
-        if (inputPreco) inputPreco.classList.add("campo-invalido");
-        formValido = false;
-      } else if (inputPreco) {
-        if (erroPreco) erroPreco.classList.remove("visivel");
+      // 3. Valida o Preço (só chega aqui se Nome e Categoria estiverem preenchidos)
+      if (precoVal === "" || parseFloat(precoVal) <= 0) {
+        erroPreco?.classList.add("visivel");
+        inputPreco.classList.add("campo-invalido");
+        inputPreco.focus();
+        return; // Para se o preço for inválido
+      } else {
+        erroPreco?.classList.remove("visivel");
         inputPreco.classList.remove("campo-invalido");
       }
-      //const nome = document.getElementById("campo-nome-produto").value;
 
-      const categoria = document.getElementById("campo-categoria").value;
-      const precoInput = document.getElementById("campo-preco").value;
-      //const quantidade = document.getElementById("campo-quantidade").value;
       const inputImg = document.getElementById("campo-img");
-
-      // const precoFormatado = precoInput
-      //   ? parseFloat(precoInput).toFixed(2).replace(".", ",")
-      //  : "0,00";
-      // const qtdFormatada = quantidade ? quantidade : "0";
 
       //tratamento de imagem para base64
 
@@ -144,11 +144,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
       const dadosProduto = {
         nomeVal,
-        categoria,
-        preco: precoInput,
-        // preco: precoFormatado,
-        //quantidade: qtdFormatada,
-        imagem: imagemFinal,
+        categoriaVal,
+        precoVal,
+        imagemFinal,
       };
 
       console.log(dadosProduto);
@@ -230,8 +228,6 @@ window.addEventListener("DOMContentLoaded", () => {
           linha.children[3].textContent;
         document.getElementById("campo-preco").value =
           linha.children[4].textContent.replace("R$ ", "").replace(",", ".");
-        //document.getElementById("campo-quantidade").value =
-        //  linha.children[5].textContent;
 
         botaoSalvarProduto.textContent = "Atualizar Produto";
         document
@@ -243,7 +239,9 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // ================= 2. LÓGICA DE FORNECEDORES (COM FETCH) =================
-const formFornecedor = document.getElementById("form-fornecedor");
+
+const API_FORNECEDORES = "http://localhost:3000/fornecedores";
+
 const corpoTabelaFornecedores = document.querySelector(
   "#tabela-fornecedores tbody",
 );
@@ -251,11 +249,6 @@ const botaoSalvarFornecedor = document.getElementById(
   "botao-salvar-fornecedor",
 );
 let idFornecedorEmEdicao = null;
-
-//const API_FORNECEDORES =
-//  "https://landing-unhearing-visible.ngrok-free.dev/fornecedor";
-
-const API_FORNECEDORES = "http://localhost:3000/fornecedores";
 
 // Função para buscar e listar os fornecedores do db.json na tabela
 async function carregarFornecedoresTabela() {
@@ -294,16 +287,107 @@ async function carregarFornecedoresTabela() {
 // Chama a função para carregar os fornecedores assim que a página abre
 carregarFornecedoresTabela();
 
+const formFornecedor = document.getElementById("form-fornecedor");
 if (formFornecedor) {
+  const inputNomeForn = document.getElementById("campo-nome-fornecedor");
+  const erroNomeForn = document.getElementById("erro-nome-fornecedor");
+
+  const inputContato = document.getElementById("campo-contato");
+  const erroContato = document.getElementById("erro-contato");
+
+  const inputCnpj = document.getElementById("campo-cnpj");
+  const erroCnpj = document.getElementById("erro-cnpj");
+
+  const inputProdutoForn = document.getElementById("campo-produto-fornecido");
+  const erroProdutoForn = document.getElementById("erro-produto-fornecido");
+
+  // --- Validação em tempo real dos Fornecedores ---
+  inputNomeForn?.addEventListener("input", () => {
+    if (inputNomeForn.value.trim() !== "") {
+      erroNomeForn?.classList.remove("visivel");
+      inputNomeForn.classList.remove("campo-invalido");
+    }
+  });
+
+  inputContato?.addEventListener("input", () => {
+    if (inputContato.value.trim() !== "") {
+      erroContato?.classList.remove("visivel");
+      inputContato.classList.remove("campo-invalido");
+    }
+  });
+
+  inputCnpj?.addEventListener("input", () => {
+    if (inputCnpj.value.trim() !== "") {
+      erroCnpj?.classList.remove("visivel");
+      inputCnpj.classList.remove("campo-invalido");
+    }
+  });
+
+  inputProdutoForn?.addEventListener("input", () => {
+    if (inputProdutoForn.value.trim() !== "") {
+      erroProdutoForn?.classList.remove("visivel");
+      inputProdutoForn.classList.remove("campo-invalido");
+    }
+  });
+
+  // --- Submit com validação sequencial para Fornecedores ---
   formFornecedor.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const nome = document.getElementById("campo-nome-fornecedor").value;
-    const contato = document.getElementById("campo-contato").value;
-    const cnpj = document.getElementById("campo-cnpj").value;
-    const produto = document.getElementById("campo-produto-fornecido").value;
+    const nomeVal = inputNomeForn ? inputNomeForn.value.trim() : "";
+    const contatoVal = inputContato ? inputContato.value.trim() : "";
+    const cnpjVal = inputCnpj ? inputCnpj.value.trim() : "";
+    const produtoVal = inputProdutoForn ? inputProdutoForn.value.trim() : "";
 
-    const dadosFornecedor = { nome, contato, cnpj, produto };
+    // 1. Valida Nome do Fornecedor
+    if (nomeVal === "") {
+      erroNomeForn?.classList.add("visivel");
+      inputNomeForn?.classList.add("campo-invalido");
+      inputNomeForn?.focus();
+      return;
+    } else {
+      erroNomeForn?.classList.remove("visivel");
+      inputNomeForn?.classList.remove("campo-invalido");
+    }
+
+    // 2. Valida Contato
+    if (contatoVal === "") {
+      erroContato?.classList.add("visivel");
+      inputContato?.classList.add("campo-invalido");
+      inputContato?.focus();
+      return;
+    } else {
+      erroContato?.classList.remove("visivel");
+      inputContato?.classList.remove("campo-invalido");
+    }
+
+    // 3. Valida CNPJ
+    if (cnpjVal === "") {
+      erroCnpj?.classList.add("visivel");
+      inputCnpj?.classList.add("campo-invalido");
+      inputCnpj?.focus();
+      return;
+    } else {
+      erroCnpj?.classList.remove("visivel");
+      inputCnpj?.classList.remove("campo-invalido");
+    }
+
+    if (produtoVal === "") {
+      erroProdutoForn?.classList.add("visivel");
+      inputProdutoForn?.classList.add("campo-invalido");
+      inputProdutoForn?.focus();
+      return;
+    } else {
+      erroProdutoForn?.classList.remove("visivel");
+      inputProdutoForn?.classList.remove("campo-invalido");
+    }
+
+    const dadosFornecedor = {
+      nome: nomeVal,
+      contato: contatoVal,
+      cnpj: cnpjVal,
+      produto: produtoVal,
+    };
 
     try {
       let urlEndpoint = API_FORNECEDORES;

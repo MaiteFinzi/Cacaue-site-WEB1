@@ -80,7 +80,7 @@
               placeholder="Ex: Trufa de Cacau"
               required
             />
-            <span class="mensagem-erro" id="erro-nome-produto"
+            <span class="mensagem-erro" id="erro-produto"
               >Campo obrigatório</span
             >
           </div>
@@ -157,7 +157,7 @@
       <!-- ================= SEÇÃO DE FORNECEDORES ================= -->
       <section id="secao-formulario-fornecedor" class="secao-formulario">
         <h3>Cadastro de Fornecedores</h3>
-        <form id="form-fornecedor" class="formulario-em-grade">
+        <form id="form-fornecedor" class="formulario-em-grade" novalidate>
           <div class="grupo-campo-formulario">
             <label for="campo-nome-fornecedor">Nome do Fornecedor</label>
             <input
@@ -166,6 +166,9 @@
               placeholder="Ex: Joao Cacau"
               required
             />
+            <span class="mensagem-erro" id="erro-nome-fornecedor"
+              >Campo obrigatório</span
+            >
           </div>
 
           <div class="grupo-campo-formulario">
@@ -176,6 +179,9 @@
               placeholder="Ex: (11) 91234-5678"
               required
             />
+            <span class="mensagem-erro" id="erro-contato"
+              >Campo obrigatório</span
+            >
           </div>
 
           <div class="grupo-campo-formulario">
@@ -185,6 +191,7 @@
               id="campo-cnpj"
               placeholder="Ex: 22.222.222/2222-22"
             />
+            <span class="mensagem-erro" id="erro-cnpj">Campo obrigatório</span>
           </div>
 
           <div class="grupo-campo-formulario largura">
@@ -194,6 +201,9 @@
               id="campo-produto-fornecido"
               placeholder="Ex: Cacau em pó"
             />
+            <span class="mensagem-erro" id="erro-produto-fornecido"
+              >Campo obrigatório</span
+            >
           </div>
 
           <div class="rodape-formulario">
