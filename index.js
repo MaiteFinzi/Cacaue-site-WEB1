@@ -38,13 +38,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const precoTexto = prod.preco || "0.00";
         const quantidadeTexto = prod.quantidade || "1";
 
-        let imagemSrc = "./imagens/logo_Cacaue_arvore.png"; // Imagem padrão caso não exista
-        if (prod.imagem) {
-          // Verifica se o back-end já envia o prefixo ou se é apenas o código base64 puro
+        let imagemSrc = "./imagens/logo_Cacaue_arvore.png"; // Imagem padrão
+
+        if (prod.imagem && prod.imagem.trim() !== "") {
           if (prod.imagem.startsWith("data:image")) {
+            // Já veio com o prefixo Base64 completo
             imagemSrc = prod.imagem;
-          } else {
-            // Ajuste para 'image/jpeg' ou 'image/png' de acordo com o formato salvo no banco
+          } else if (
+            prod.imagem.startsWith("./") ||
+            prod.imagem.startsWith("imagens/")
+          ) {
+            // É um caminho de pasta local (ex: registros antigos no db.json)
+            imagemSrc = prod.imagem.startsWith("./")
+              ? prod.imagem
+              : `./${prod.imagem}`;
+          } else if (prod.imagem !== "sem-foto" && prod.imagem.length > 50) {
+            // Só monta Base64 se não for "sem-foto" e tiver tamanho de imagem real
             imagemSrc = `data:image/jpeg;base64,${prod.imagem}`;
           }
         }

@@ -33,15 +33,24 @@ window.addEventListener("DOMContentLoaded", () => {
       corpoTabelaProdutos.innerHTML = "";
 
       produtos.forEach((prod, index) => {
-        imagemSrc = `data:image/jpeg;base64,${prod.imagem}`;
+        let imagemSrc = "./imagens/logo_Cacaue_arvore.png";
 
+        if (
+          prod.imagem &&
+          prod.imagem !== "sem foto" &&
+          !prod.imagem.startsWith("./")
+        ) {
+          imagemSrc = prod.imagem.startsWith("data:image")
+            ? prod.imagem
+            : `data:image/jpeg;base64,${prod.imagem}`;
+        }
         const precoFormatado = Number(prod.preco || 0)
           .toFixed(2)
           .replace(".", ",");
         const novaLinha = document.createElement("tr");
         novaLinha.innerHTML = `
           <td>${String(index + 1).padStart(2, "0")}</td>
-          <td><img src="${imagemSrc || "./imagens/logo_Cacaue_arvore.png"}" alt="Foto" class="miniatura-tabela" /></td>
+          <td><img src="${imagemSrc}" alt="Foto" class="miniatura-tabela" /></td>
           <td>${prod.nome}</td>
           <td>${prod.categoria}</td>
           <td>R$ ${precoFormatado}</td>
@@ -136,13 +145,10 @@ window.addEventListener("DOMContentLoaded", () => {
         inputPreco.classList.remove("campo-invalido");
       }
 
+      //Enviar texto simples para backend quando o usuário não enviar uma imagem
       const inputImg = document.getElementById("campo-img");
 
-      //tratamento de imagem para base64
-
-      const imagemPadrao = "./imagens/logo_Cacaue_arvore.png";
-
-      let imagemFinal = imagemPadrao;
+      let imagemFinal = "sem foto";
       if (inputImg.files && inputImg.files[0]) {
         const imagemBase64 = await converterParaBase64(inputImg.files[0]);
         const base64Limpo = imagemBase64.split(",")[1];

@@ -144,4 +144,9 @@ function finalizarCompraWhatsApp() {
   // Abre o WhatsApp com a mensagem pronta
   const urlWhatsApp = `https://api.whatsapp.com/send?phone=${seuNumeroWhatsApp}&text=${mensagemCodificada}`;
   window.open(urlWhatsApp, "_blank");
+
+  localStorage.removeItem("carrinhoCacau");
+  carrinhoItens = [];
+  renderizarCarrinho();
+  atualizarContador();
 }

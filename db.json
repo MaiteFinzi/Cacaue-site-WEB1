@@ -1,32 +1,11 @@
 {
   "produtos": [
     {
-      "nome": "Cacau em Pó 100% Puro",
-      "categoria": "Derivados",
-      "preco": 13.89,
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "3"
-    },
-    {
-      "nome": "brigadeiro",
-      "categoria": "chocolate",
-      "preco": "99,00",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "uurQN00Jq1A"
-    },
-    {
-      "nome": "brigadeiro",
-      "categoria": "chocolate",
-      "preco": "9,00",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "78S1jcGD10I"
-    },
-    {
-      "nome": "trufa de cacau",
-      "categoria": "chocolate",
-      "preco": 12.56,
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "GxmdtpBxgi8"
+      "nome": "Brigadeiro Tradicional",
+      "categoria": "doces",
+      "preco": 5.6,
+      "imagem": "sem foto",
+      "id": "-MZ2YgD5K44"
     }
   ],
   "fornecedores": [
