@@ -824,10 +824,12 @@ input.campo-invalido {
 
 /* Célula de Ações da tabela */
 .tabela-administrativa td:last-child {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  align-items: center;
+  align-items: center;*/
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 .botao-tabela-editar,
@@ -840,6 +842,7 @@ input.campo-invalido {
   min-width: 68px; /* Garante que ambos tenham exatamente a mesma largura */
   text-align: center;
   transition: background-color 0.2s;
+  margin-right: 6px;
 }
 
 .botao-tabela-editar {
@@ -854,6 +857,7 @@ input.campo-invalido {
 .botao-tabela-excluir {
   background-color: #d32f2f;
   color: #fff;
+  margin-right: 0;
 }
 
 .botao-tabela-excluir:hover {
@@ -1069,14 +1073,22 @@ footer {
   }
 
   .tabela-administrativa td:last-child {
-    flex-direction: column;
-    align-items: stretch;
+    /* flex-direction: column;
+    align-items: stretch;*/
+    white-space: normal;
   }
 
   .botao-tabela-editar,
   .botao-tabela-excluir {
+    /* width: 100%;
+    padding: 8px 10px;*/
+    display: block;
     width: 100%;
-    padding: 8px 10px;
+    margin-right: 0;
+    margin-bottom: 6px;
+  }
+  .botao-tabela-excluir {
+    margin-bottom: 0;
   }
 }
 
