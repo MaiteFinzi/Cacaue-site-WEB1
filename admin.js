@@ -207,7 +207,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       if (botaoExcluir) {
         const idProduto = botaoExcluir.getAttribute("data-id");
-        if (confirm("Deseja realmente remover este produto?")) {
+        if (await confirmarAcao("Deseja realmente remover este produto?")) {
           try {
             const resposta = await fetch(`${API_PRODUTOS}/${idProduto}`, {
               method: "DELETE",
@@ -440,7 +440,7 @@ if (formFornecedor) {
     // EXCLUIR FORNECEDOR (DELETE)
     if (botaoExcluir) {
       const idFornecedor = botaoExcluir.getAttribute("data-id");
-      if (confirm("Deseja realmente remover este fornecedor?")) {
+      if (await confirmarAcao("Deseja realmente remover este fornecedor?")) {
         try {
           const resposta = await fetch(`${API_FORNECEDORES}/${idFornecedor}`, {
             method: "DELETE",

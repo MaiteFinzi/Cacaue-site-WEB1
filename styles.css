@@ -822,6 +822,44 @@ input.campo-invalido {
   background-color: #faf8f5;
 }
 
+/* Célula de Ações da tabela */
+.tabela-administrativa td:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.botao-tabela-editar,
+.botao-tabela-excluir {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  min-width: 68px; /* Garante que ambos tenham exatamente a mesma largura */
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.botao-tabela-editar {
+  background-color: #e0a96d;
+  color: #fff;
+}
+
+.botao-tabela-editar:hover {
+  background-color: #c99359;
+}
+
+.botao-tabela-excluir {
+  background-color: #d32f2f;
+  color: #fff;
+}
+
+.botao-tabela-excluir:hover {
+  background-color: #b71c1c;
+}
+
 /* Estilo para a imagem miniatura na tabela */
 .miniatura-tabela {
   width: 45px;
@@ -1022,6 +1060,24 @@ footer {
     height: 30px;
     font-size: 0.8rem;
   }
+
+  /* 5. Tabela Administrativa */
+  .tabela-administrativa th,
+  .tabela-administrativa td {
+    padding: 10px 8px;
+    font-size: 0.85rem;
+  }
+
+  .tabela-administrativa td:last-child {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .botao-tabela-editar,
+  .botao-tabela-excluir {
+    width: 100%;
+    padding: 8px 10px;
+  }
 }
 
 /* ================= SEÇÃO QUEM SOMOS ================= */
@@ -1152,37 +1208,6 @@ footer {
   color: #6b2a14;
 }
 
-/* Responsividade */
-/*
-@media (max-width: 768px) {
-  .secao-quem-somos {
-    padding: 35px 20px;
-  }
-
-  .quem-somos-apresentacao {
-    grid-template-columns: 1fr;
-    gap: 25px;
-    margin-bottom: 35px;
-  }
-
-  .imagem-quem-somos {
-    height: 260px;
-  }
-
-  .quem-somos-texto h2 {
-    font-size: 1.9rem;
-  }
-
-  .institucional-cacaue {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .bloco-institucional {
-    padding: 24px;
-  }
-}
-*/
 /*modal*/
 /* Estilo do Modal Flutuante Global */
 .modal-notificacao-flutuante {
@@ -1214,6 +1239,94 @@ footer {
 .modal-notificacao-flutuante.mostrar {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ================= MODAL DE CONFIRMAÇÃO GLOBAL ================= */
+.modal-confirmacao-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(59, 29, 16, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-confirmacao-overlay.mostrar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-confirmacao-caixa {
+  background-color: #ffffff;
+  color: #333333;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 8px;
+  border-top: 5px solid #3b1d10; /* Marrom Cacauê */
+  padding: 22px 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  transform: translateY(-10px);
+  transition: transform 0.25s ease;
+}
+
+.modal-confirmacao-overlay.mostrar .modal-confirmacao-caixa {
+  transform: translateY(0);
+}
+
+.modal-confirmacao-titulo {
+  color: #3b1d10;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.modal-confirmacao-mensagem {
+  color: #555555;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.modal-confirmacao-botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-confirmacao-cancelar {
+  background-color: #f7f3ee;
+  color: #3b1d10;
+  border: 1px solid #e2ded9;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-confirmacao-cancelar:hover {
+  background-color: #ebe3d9;
+}
+
+.btn-confirmacao-ok {
+  background-color: #d32f2f; /* Mesmo vermelho do botão Excluir */
+  color: #ffffff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-confirmacao-ok:hover {
+  background-color: #b71c1c;
 }
 
 /* ================= AJUSTES DE RESPONSIVIDADE PARA O ADMIN ================= */
