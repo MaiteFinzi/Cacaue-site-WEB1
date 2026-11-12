@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Trata caso a categoria ou nome venham vazios
         const categoriaTexto = prod.categoria || "Geral";
         const nomeTexto = prod.nome || "Produto";
-        const precoTexto = prod.preco || "0,00";
+        const precoTexto = prod.preco || "0.00";
         const quantidadeTexto = prod.quantidade || "1";
 
         let imagemSrc = "./imagens/logo_Cacaue_arvore.png"; // Imagem padrão caso não exista
@@ -53,13 +53,20 @@ document.addEventListener("DOMContentLoaded", () => {
         cardDiv.setAttribute("data-nome", nomeTexto.toLowerCase());
 
         // Converte o preço de string ("15,90") para número para o carrinho (ex: 15.90)
-        const precoNumerico = parseFloat(String(precoTexto).replace(",", "."));
+        const precoNumerico =
+          parseFloat(String(prod.preco).replace(".", ",")) || 0;
+
+        console.log("Preço numérico:", precoNumerico);
+
+        const precoFormatado = precoNumerico.toFixed(2).replace(".", ",");
+
+        console.log("Preço formatado:", precoFormatado);
 
         cardDiv.innerHTML = `
           <img src="${imagemSrc}" alt="${nomeTexto}" class="img-produto" />
           <h4>${nomeTexto}</h4>
           <p class="peso">${categoriaTexto}</p>
-          <span class="preco">R$ ${precoTexto}</span>
+          <span class="preco">R$ ${precoFormatado}</span>
           <button class="btn-comprar" onclick="adicionarAoCarrinho('${nomeTexto}', ${precoNumerico}, '${imagemSrc}', '${quantidadeTexto} un')">
             Adicionar ao carrinho
           </button>

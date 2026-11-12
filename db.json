@@ -3,23 +3,21 @@
     {
       "nome": "Nibs de Cacau Orgânico",
       "categoria": "Grãos",
-      "preco": "25,00",
-      "imagem": "./imagens/nibs-cacau.png",
+      "preco": 12.56,
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
       "id": "2"
     },
     {
-      "id": "3",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
       "nome": "Cacau em Pó 100% Puro",
-      "preco": "28,00",
-      "quantidade": "20",
-      "categoria": "Derivados"
+      "categoria": "Derivados",
+      "preco": 13.89,
+      "imagem": "./imagens/logo_Cacaue_arvore.png",
+      "id": "3"
     },
     {
       "nome": "brigadeiro",
       "categoria": "chocolate",
       "preco": "99,00",
-      "quantidade": "9",
       "imagem": "./imagens/logo_Cacaue_arvore.png",
       "id": "uurQN00Jq1A"
     },
@@ -27,228 +25,15 @@
       "nome": "brigadeiro",
       "categoria": "chocolate",
       "preco": "9,00",
-      "quantidade": "3",
       "imagem": "./imagens/logo_Cacaue_arvore.png",
       "id": "78S1jcGD10I"
     },
     {
-      "nome": "brigadeiro",
-      "categoria": "Grãos",
-      "preco": "9,00",
-      "quantidade": "9",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "OzAAZTVeywk"
-    },
-    {
-      "nome": "brigadeiro",
+      "nome": "trufa de cacau",
       "categoria": "chocolate",
-      "preco": "8,90",
-      "quantidade": "6",
+      "preco": 12.56,
       "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "Xm2FHK9ADJ8"
-    },
-    {
-      "nome": "brigadeiro",
-      "categoria": "chocolate",
-      "preco": "2,00",
-      "imagem": "./imagens/brigadeiro-cacau-100.png",
-      "id": "miwD86sxxPo"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "Ycx0LUA0R_w"
-    },
-    {
-      "nomeVal": "Amêndoa de Cacau Caramelizada",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "nVZqRF8neEc"
-    },
-    {
-      "nomeVal": "Amêndoa de Cacau Caramelizada",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "zTL-gPAopzE"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "-4R54VAN1BI"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "Grãos",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "n6eHP8_WGAY"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "2dF5yMMQVJ0"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "chocolate",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "iEpr4qSTKUs"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "GRUDwfeHkjk"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "TPUEoOIANtc"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "Grãos",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "unoXsIB2EyI"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "Grãos",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "z-d95uiQYWY"
-    },
-    {
-      "nomeVal": "Nibs de Cacau Orgânico",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "3mCm-BB4Too"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "JV0FTZc65eQ"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "wsuUdO2NwiI"
-    },
-    {
-      "nomeVal": "",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "FV9YOjP3mnY"
-    },
-    {
-      "nomeVal": "",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "IvrkCXIkAEM"
-    },
-    {
-      "nomeVal": "",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "sv4e80tYm_U"
-    },
-    {
-      "nomeVal": "",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "EjkQ_odc-r8"
-    },
-    {
-      "nomeVal": "",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "R5EZplENkPU"
-    },
-    {
-      "nomeVal": "",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "JaFR6cUapDw"
-    },
-    {
-      "nomeVal": "",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "_f5mymuBsZE"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "-DJ-8zziyZA"
-    },
-    {
-      "nomeVal": "",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "qaKFX7EIQ4g"
-    },
-    {
-      "nomeVal": "",
-      "categoria": "",
-      "preco": "",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "c8kGi6rxEiY"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoria": "chocolate",
-      "preco": "15.90",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "1eRZpI9x2qI"
-    },
-    {
-      "nome": "brigadeiro",
-      "categoria": "chocolate",
-      "preco": "80.00",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "jyanX-lx7OM"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoriaVal": "chocolate",
-      "precoVal": "7.90",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "4e5ojvOb68A"
-    },
-    {
-      "nomeVal": "brigadeiro",
-      "categoriaVal": "chocolate",
-      "precoVal": "12.5",
-      "imagem": "./imagens/logo_Cacaue_arvore.png",
-      "id": "S_0wod2XNKk"
+      "id": "GxmdtpBxgi8"
     }
   ],
   "fornecedores": [

@@ -34,13 +34,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
       produtos.forEach((prod, index) => {
         imagemSrc = `data:image/jpeg;base64,${prod.imagem}`;
+
+        const precoFormatado = Number(prod.preco || 0)
+          .toFixed(2)
+          .replace(".", ",");
         const novaLinha = document.createElement("tr");
         novaLinha.innerHTML = `
           <td>${String(index + 1).padStart(2, "0")}</td>
           <td><img src="${imagemSrc || "./imagens/logo_Cacaue_arvore.png"}" alt="Foto" class="miniatura-tabela" /></td>
           <td>${prod.nome}</td>
           <td>${prod.categoria}</td>
-          <td>R$ ${prod.preco}</td>
+          <td>R$ ${precoFormatado}</td>
         
           <td>
             <button class="botao-tabela-editar" type="button" data-id="${prod.id}">Editar</button>
@@ -82,7 +86,8 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     inputPreco.addEventListener("input", () => {
-      if (inputPreco.value.trim() !== "" && parseFloat(inputPreco.value) > 0) {
+      const valorNumerico = parseFloat(inputPreco.value.replace(",", "."));
+      if (inputPreco.value.trim() !== "" && valorNumerico > 0) {
         erroPreco?.classList.remove("visivel");
         inputPreco.classList.remove("campo-invalido");
       }
@@ -118,12 +123,14 @@ window.addEventListener("DOMContentLoaded", () => {
         inputCategoria.classList.remove("campo-invalido");
       }
 
+      //Converte "15,90" para 15.90 para validação
+      const precoNumerico = parseFloat(precoVal.replace(",", "."));
       // 3. Valida o Preço (só chega aqui se Nome e Categoria estiverem preenchidos)
-      if (precoVal === "" || parseFloat(precoVal) <= 0) {
+      if (precoVal === "" || isNaN(precoNumerico) || precoNumerico <= 0) {
         erroPreco?.classList.add("visivel");
         inputPreco.classList.add("campo-invalido");
         inputPreco.focus();
-        return; // Para se o preço for inválido
+        return;
       } else {
         erroPreco?.classList.remove("visivel");
         inputPreco.classList.remove("campo-invalido");
@@ -145,7 +152,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const dadosProduto = {
         nome: nomeVal,
         categoria: categoriaVal,
-        preco: precoVal,
+        preco: precoNumerico, //vai para o back-end com "."
         imagem: imagemFinal,
       };
 
@@ -227,7 +234,10 @@ window.addEventListener("DOMContentLoaded", () => {
         document.getElementById("campo-categoria").value =
           linha.children[3].textContent;
         document.getElementById("campo-preco").value =
-          linha.children[4].textContent.replace("R$ ", "").replace(",", ".");
+          linha.children[4].textContent
+            .replace("R$ ", "")
+            .replace(",", ".")
+            .trim(); //mantem a virgua no campo para o usuario editar
 
         botaoSalvarProduto.textContent = "Atualizar Produto";
         document
