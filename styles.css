@@ -1118,7 +1118,7 @@ footer {
 .imagem-quem-somos {
   display: block;
   width: 100%;
-  height: 340px;
+  height: auto;
   object-fit: cover;
   object-position: center;
   border-radius: 12px;
@@ -1376,5 +1376,26 @@ footer {
   .botao-salvar-registro {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* ================= AJUSTES DE RESPONSIVIDADE (QUEM SOMOS) ================= */
+
+@media (max-width: 900px) {
+  /* Transforma a apresentação em 1 coluna (imagem em cima, texto embaixo) */
+  .quem-somos-apresentacao {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 35px;
+  }
+
+  .imagem-quem-somos {
+    max-height: 280px;
+  }
+
+  /* Empilha os cards de Missão, Visão e Valores em 1 coluna no celular */
+  .institucional-cacaue {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
