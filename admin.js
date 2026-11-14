@@ -145,6 +145,31 @@ window.addEventListener("DOMContentLoaded", () => {
         inputPreco.classList.remove("campo-invalido");
       }
 
+      // --- Validação duplicidade produto ---
+      try {
+        const respostaVerificacao = await fetch(API_PRODUTOS);
+        if (respostaVerificacao.ok) {
+          const produtosExistentes = await respostaVerificacao.json();
+          const produtoDuplicado = produtosExistentes.find(
+            (p) =>
+              p.nome.toLowerCase() === nomeVal.toLowerCase() &&
+              String(p.id) !== String(idProdutoEmEdicao),
+          );
+
+          if (produtoDuplicado) {
+            mostrarNotificacao(
+              "Já existe um produto cadastrado com este nome!",
+              "erro",
+            );
+            inputNome.classList.add("campo-invalido");
+            inputNome.focus();
+            return;
+          }
+        }
+      } catch (erro) {
+        console.error("Erro ao verificar duplicidade de produto:", erro);
+      }
+
       //Enviar texto simples para backend quando o usuário não enviar uma imagem
       const inputImg = document.getElementById("campo-img");
 
@@ -180,6 +205,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         console.log(idProdutoEmEdicao);
+
         if (resposta.ok) {
           mostrarNotificacao(
             idProdutoEmEdicao !== null
@@ -396,6 +422,34 @@ if (formFornecedor) {
     } else {
       erroProdutoForn?.classList.remove("visivel");
       inputProdutoForn?.classList.remove("campo-invalido");
+    }
+
+    // --- Validação duplicidade fornecedores ---
+    try {
+      const respostaVerificacao = await fetch(API_FORNECEDORES, {
+        headers: { "ngrok-skip-browser-warning": "true" },
+      });
+      if (respostaVerificacao.ok) {
+        const fornecedoresExistentes = await respostaVerificacao.json();
+
+        const fornecedorDuplicado = fornecedoresExistentes.find(
+          (f) =>
+            (f.nome.toLowerCase() === nomeVal.toLowerCase() ||
+              f.cnpj === cnpjVal ||
+              f.contato === contatoVal) &&
+            String(f.id) !== String(idFornecedorEmEdicao),
+        );
+
+        if (fornecedorDuplicado) {
+          mostrarNotificacao(
+            "Já existe um fornecedor cadastrado com este Nome, Contato ou CNPJ!",
+            "erro",
+          );
+          return;
+        }
+      }
+    } catch (erro) {
+      console.error("Erro ao verificar duplicidade de fornecedor:", erro);
     }
 
     const dadosFornecedor = {
