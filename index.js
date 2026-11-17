@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // const API_PRODUTOS =
   //  "https://landing-unhearing-visible.ngrok-free.dev/produto";
 
-  const API_PRODUTOS = "http://localhost:3000/produtos";
+  //const API_PRODUTOS = "http://10.10.76.136:8082/produto";
+
+  const API_PRODUTOS = "http://localhost:8082/produto";
 
   const cardDestaque = gridProdutos.querySelector(".card-destaque-vertical");
 
@@ -74,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardDiv.innerHTML = `
           <img src="${imagemSrc}" alt="${nomeTexto}" class="img-produto" />
           <h4>${nomeTexto}</h4>
-          <p class="peso">${categoriaTexto}</p>
+          <p class="categoria">${categoriaTexto}</p>
           <span class="preco">R$ ${precoFormatado}</span>
           <button class="btn-comprar" onclick="adicionarAoCarrinho('${nomeTexto}', ${precoNumerico}, '${imagemSrc}', '${quantidadeTexto} un')">
             Adicionar ao carrinho
@@ -101,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     todosCards.forEach((card) => {
       const titulo = card.querySelector("h4").textContent.toLowerCase();
-      const descricao = card.querySelector(".peso").textContent.toLowerCase();
+      const descricao = card.querySelector(".categoria").textContent.toLowerCase();
 
       if (titulo.includes(termo) || descricao.includes(termo)) {
         card.style.display = "block";

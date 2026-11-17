@@ -8,7 +8,9 @@ window.addEventListener("DOMContentLoaded", () => {
   //const API_PRODUTOS =
   //  "https://landing-unhearing-visible.ngrok-free.dev/produto";
 
-  const API_PRODUTOS = "http://localhost:3000/produtos";
+ // const API_PRODUTOS = "http://10.10.76.136:8082/produto";
+  const API_PRODUTOS = "http://localhost:8082/produto";
+
 
   const converterParaBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -243,7 +245,7 @@ window.addEventListener("DOMContentLoaded", () => {
           linha.children[4].textContent
             .replace("R$ ", "")
             .replace(",", ".")
-            .trim(); //mantem a virgua no campo para o usuario editar
+            .trim(); //mantem a virgula no campo para o usuario editar
 
         botaoSalvarProduto.textContent = "Atualizar Produto";
         document
@@ -256,8 +258,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // ================= 2. LÓGICA DE FORNECEDORES (COM FETCH) =================
 
-const API_FORNECEDORES = "http://localhost:3000/fornecedores";
-
+//const API_FORNECEDORES = "http://10.10.76.136:8082/fornecedor";
+const API_FORNECEDORES = "http://localhost:8082/fornecedor";
 const corpoTabelaFornecedores = document.querySelector(
   "#tabela-fornecedores tbody",
 );
@@ -284,6 +286,7 @@ async function carregarFornecedoresTabela() {
       const novaLinha = document.createElement("tr");
       novaLinha.innerHTML = `
           <td>${String(index + 1).padStart(2, "0")}</td>
+          <td>${forn.data}</td>
           <td>${forn.nome}</td>
           <td>${forn.contato}</td>
           <td>${forn.cnpj}</td>
@@ -305,6 +308,9 @@ carregarFornecedoresTabela();
 
 const formFornecedor = document.getElementById("form-fornecedor");
 if (formFornecedor) {
+  const inputDataCadastro = document.getElementById("campo-data-cadastro");
+  const erroDataCadastro = document.getElementById("erro-data-cadastro");
+
   const inputNomeForn = document.getElementById("campo-nome-fornecedor");
   const erroNomeForn = document.getElementById("erro-nome-fornecedor");
 
@@ -318,6 +324,13 @@ if (formFornecedor) {
   const erroProdutoForn = document.getElementById("erro-produto-fornecido");
 
   // --- Validação em tempo real dos Fornecedores ---
+  inputDataCadastro?.addEventListener("input", () => {
+    if (inputDataCadastro.value.trim() !== "") {
+      erroDataCadastro?.classList.remove("visivel");
+      inputDataCadastro.classList.remove("campo-invalido");
+    }
+  });
+
   inputNomeForn?.addEventListener("input", () => {
     if (inputNomeForn.value.trim() !== "") {
       erroNomeForn?.classList.remove("visivel");
@@ -350,12 +363,24 @@ if (formFornecedor) {
   formFornecedor.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const dataVal = inputDataCadastro ? inputDataCadastro.value:"";
     const nomeVal = inputNomeForn ? inputNomeForn.value.trim() : "";
     const contatoVal = inputContato ? inputContato.value.trim() : "";
     const cnpjVal = inputCnpj ? inputCnpj.value.trim() : "";
     const produtoVal = inputProdutoForn ? inputProdutoForn.value.trim() : "";
 
     // 1. Valida Nome do Fornecedor
+
+    if (dataVal === "") {
+      erroDataCadastro?.classList.add("visivel");
+      inputDataCadastro?.classList.add("campo-invalido");
+      inputDataCadastro?.focus();
+      return;
+    } else {
+      erroDataCadastro?.classList.remove("visivel");
+      inputDataCadastro?.classList.remove("campo-invalido");
+    }
+
     if (nomeVal === "") {
       erroNomeForn?.classList.add("visivel");
       inputNomeForn?.classList.add("campo-invalido");
@@ -399,6 +424,7 @@ if (formFornecedor) {
     }
 
     const dadosFornecedor = {
+      data: dataVal,
       nome: nomeVal,
       contato: contatoVal,
       cnpj: cnpjVal,
@@ -467,14 +493,16 @@ if (formFornecedor) {
       idFornecedorEmEdicao = idFornecedor;
       const linha = botaoEditar.closest("tr");
 
+      document.getElementById("campo-data-cadastro").value =
+          linha.children[1].textContent;
       document.getElementById("campo-nome-fornecedor").value =
-        linha.children[1].textContent;
-      document.getElementById("campo-contato").value =
         linha.children[2].textContent;
-      document.getElementById("campo-cnpj").value =
+      document.getElementById("campo-contato").value =
         linha.children[3].textContent;
-      document.getElementById("campo-produto-fornecido").value =
+      document.getElementById("campo-cnpj").value =
         linha.children[4].textContent;
+      document.getElementById("campo-produto-fornecido").value =
+        linha.children[5].textContent;
 
       botaoSalvarFornecedor.textContent = "Atualizar Fornecedor";
       document
