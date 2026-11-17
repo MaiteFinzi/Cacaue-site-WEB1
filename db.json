@@ -50,6 +50,20 @@
       "cnpj": "98.765.432/0001-23",
       "produto": "cacau",
       "id": "PqwuEbZ7PEk"
+    },
+    {
+      "nome": "Jose Alberto Cacau",
+      "contato": "(11) 97777-2244",
+      "cnpj": "98.765.432/0001-55",
+      "produto": "cacau",
+      "id": "3Uuq3FLyKp4"
+    },
+    {
+      "nome": "Sítio Sabor do Cacau",
+      "contato": "(11) 97997-2222",
+      "cnpj": "18.765.432/0001-12",
+      "produto": "cacau",
+      "id": "7tx2OvNj-BA"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
