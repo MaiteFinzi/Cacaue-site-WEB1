@@ -371,7 +371,7 @@ if (formFornecedor) {
   const erroDataCadastro = document.getElementById("erro-data-cadastro");
 
   const inputEnderecoForn = document.getElementById(
-    "campo-endereco-fornecedor",
+    "campo-endereco-fornecedor"
   );
   const erroEnderecoForn = document.getElementById("erro-endereco-fornecedor");
 
@@ -397,7 +397,7 @@ if (formFornecedor) {
 
   inputEnderecoForn?.addEventListener("input", () => {
     if (inputEnderecoForn.value.trim() !== "") {
-      erroEnderecoForn?.classList.remove("visivel");
+      (document.getElementById("erro-endereco-fornecedor"))?.classList.remove("visivel");
       inputEnderecoForn.classList.remove("campo-invalido");
     }
   });
@@ -464,7 +464,7 @@ if (formFornecedor) {
     }
 
     if (enderecoVal === "") {
-      erroEnderecoForn?.classList.add("visivel");
+      (document.getElementById("erro-endereco-fornecedor"))?.classList.add("visivel");
       inputEnderecoForn?.classList.add("campo-invalido");
       inputEnderecoForn?.focus();
       return;
