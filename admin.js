@@ -536,7 +536,7 @@ if (formFornecedor) {
     const dadosFornecedor = {
       data: dataVal,
       nome: nomeVal,
-      endereco: endereco,
+      endereco: enderecoVal,
       contato: contatoVal,
       cnpj: cnpjVal,
       produto: produtoVal,
