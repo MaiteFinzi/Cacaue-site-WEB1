@@ -8,9 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // const API_PRODUTOS =
   //  "https://landing-unhearing-visible.ngrok-free.dev/produto";
 
-  //const API_PRODUTOS = "http://10.10.76.136:8082/produto";
+  const API_PRODUTOS = "http://10.10.76.136:8082/produto";
 
-  const API_PRODUTOS = "http://localhost:8082/produto";
+  //const API_PRODUTOS = "http://localhost:3000/produtos";
+
+  //const API_PRODUTOS = "http://localhost:8082/produto";
 
   const cardDestaque = gridProdutos.querySelector(".card-destaque-vertical");
 
@@ -37,8 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Trata caso a categoria ou nome venham vazios
         const categoriaTexto = prod.categoria || "Geral";
         const nomeTexto = prod.nome || "Produto";
-        const precoTexto = prod.preco || "0.00";
-        const quantidadeTexto = prod.quantidade || "1";
+        // const precoTexto = prod.preco || "0.00";
+        const peso = prod.peso || "0";
+        const quantidadeTexto = prod.quantidade || "0";
 
         let imagemSrc = "./imagens/logo_Cacaue_arvore.png"; // Imagem padrão
 
@@ -77,8 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="${imagemSrc}" alt="${nomeTexto}" class="img-produto" />
           <h4>${nomeTexto}</h4>
           <p class="categoria">${categoriaTexto}</p>
+          <p class="peso">${peso} g </p>
           <span class="preco">R$ ${precoFormatado}</span>
-          <button class="btn-comprar" onclick="adicionarAoCarrinho('${nomeTexto}', ${precoNumerico}, '${imagemSrc}', '${quantidadeTexto} un')">
+          <button class="btn-comprar" onclick="adicionarAoCarrinho('${nomeTexto}', ${precoNumerico}, '${imagemSrc}', '${peso}')">
             Adicionar ao carrinho
           </button>
         `;
@@ -96,14 +100,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   carregarProdutosHome();
 
-  // 2. Função para filtrar todos os cards da tela
+  // 2. Função para filtrar produtos por nome e categoria
   function executarFiltro(termoBusca) {
     const termo = termoBusca.toLowerCase().trim();
     const todosCards = gridProdutos.querySelectorAll(".card-produto");
 
     todosCards.forEach((card) => {
       const titulo = card.querySelector("h4").textContent.toLowerCase();
-      const descricao = card.querySelector(".categoria").textContent.toLowerCase();
+      const descricao = card
+        .querySelector(".categoria")
+        .textContent.toLowerCase();
 
       if (titulo.includes(termo) || descricao.includes(termo)) {
         card.style.display = "block";

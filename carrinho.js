@@ -67,7 +67,7 @@ function renderizarCarrinho() {
       <img src="${produto.imagem}" alt="${produto.nome}" class="carrinho-item-imagem">
       <div class="carrinho-item-detalhes">
         <h4 class="carrinho-item-titulo">${produto.nome}</h4>
-        <span class="carrinho-item-peso">${produto.peso}</span>
+        <span class="carrinho-item-peso">${produto.peso} g</span>
         
         <div class="carrinho-item-controles">
           <div class="quantidade-controle">

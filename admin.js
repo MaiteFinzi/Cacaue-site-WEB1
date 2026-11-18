@@ -8,9 +8,11 @@ window.addEventListener("DOMContentLoaded", () => {
   //const API_PRODUTOS =
   //  "https://landing-unhearing-visible.ngrok-free.dev/produto";
 
- // const API_PRODUTOS = "http://10.10.76.136:8082/produto";
-  const API_PRODUTOS = "http://localhost:8082/produto";
+  const API_PRODUTOS = "http://10.10.76.136:8082/produto";
 
+  //const API_PRODUTOS = "http://localhost:3000/produtos";
+
+  //const API_PRODUTOS = "http://localhost:8082/produto";
 
   const converterParaBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -55,6 +57,7 @@ window.addEventListener("DOMContentLoaded", () => {
           <td><img src="${imagemSrc}" alt="Foto" class="miniatura-tabela" /></td>
           <td>${prod.nome}</td>
           <td>${prod.categoria}</td>
+          <td>${prod.peso} g</td>
           <td>R$ ${precoFormatado}</td>
         
           <td>
@@ -79,6 +82,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const inputCategoria = document.getElementById("campo-categoria");
     const erroCategoria = document.getElementById("erro-categoria");
 
+    const inputPeso = document.getElementById("campo-peso");
+    const erroPeso = document.getElementById("erro-peso");
+
     const inputPreco = document.getElementById("campo-preco");
     const erroPreco = document.getElementById("erro-preco");
 
@@ -96,6 +102,14 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    inputPeso.addEventListener("input", () => {
+      const valorNumerico = parseFloat(inputPeso.value.replace(",", "."));
+      if (inputPeso.value.trim() !== "" && valorNumerico > 0) {
+        erroPeso?.classList.remove("visivel");
+        inputPeso.classList.remove("campo-invalido");
+      }
+    });
+
     inputPreco.addEventListener("input", () => {
       const valorNumerico = parseFloat(inputPreco.value.replace(",", "."));
       if (inputPreco.value.trim() !== "" && valorNumerico > 0) {
@@ -110,6 +124,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       const nomeVal = inputNome.value.trim();
       const categoriaVal = inputCategoria.value.trim();
+      const pesoVal = inputPeso.value.trim();
       const precoVal = inputPreco.value.trim();
 
       // 1. Valida o Nome
@@ -132,6 +147,16 @@ window.addEventListener("DOMContentLoaded", () => {
       } else {
         erroCategoria?.classList.remove("visivel");
         inputCategoria.classList.remove("campo-invalido");
+      }
+
+      if (pesoVal === "") {
+        erroPeso?.classList.add("visivel");
+        inputPeso.classList.add("campo-invalido");
+        inputPeso.focus();
+        return; // Para aqui e não mostra o erro do Preço ainda
+      } else {
+        erroPeso?.classList.remove("visivel");
+        inputPeso.classList.remove("campo-invalido");
       }
 
       //Converte "15,90" para 15.90 para validação
@@ -185,6 +210,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const dadosProduto = {
         nome: nomeVal,
         categoria: categoriaVal,
+        peso: pesoVal,
         preco: precoNumerico, //vai para o back-end com "."
         imagem: imagemFinal,
       };
@@ -267,8 +293,10 @@ window.addEventListener("DOMContentLoaded", () => {
           linha.children[2].textContent;
         document.getElementById("campo-categoria").value =
           linha.children[3].textContent;
+        document.getElementById("campo-peso").value =
+          linha.children[4].textContent;
         document.getElementById("campo-preco").value =
-          linha.children[4].textContent
+          linha.children[5].textContent
             .replace("R$ ", "")
             .replace(",", ".")
             .trim(); //mantem a virgula no campo para o usuario editar
@@ -284,8 +312,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // ================= 2. LÓGICA DE FORNECEDORES (COM FETCH) =================
 
-//const API_FORNECEDORES = "http://10.10.76.136:8082/fornecedor";
-const API_FORNECEDORES = "http://localhost:8082/fornecedor";
+const API_FORNECEDORES = "http://10.10.76.136:8082/fornecedor";
+
+//const API_FORNECEDORES = "http://localhost:3000/fornecedores";
+
+//const API_FORNECEDORES = "http://localhost:8082/fornecedor";
+
 const corpoTabelaFornecedores = document.querySelector(
   "#tabela-fornecedores tbody",
 );
@@ -312,8 +344,9 @@ async function carregarFornecedoresTabela() {
       const novaLinha = document.createElement("tr");
       novaLinha.innerHTML = `
           <td>${String(index + 1).padStart(2, "0")}</td>
-          <td>${forn.data}</td>
+          <td class="coluna-data">${forn.data}</td>
           <td>${forn.nome}</td>
+          <td>${forn.endereco}</td>
           <td>${forn.contato}</td>
           <td>${forn.cnpj}</td>
           <td>${forn.produto}</td>
@@ -337,6 +370,11 @@ if (formFornecedor) {
   const inputDataCadastro = document.getElementById("campo-data-cadastro");
   const erroDataCadastro = document.getElementById("erro-data-cadastro");
 
+  const inputEnderecoForn = document.getElementById(
+    "campo-endereco-fornecedor",
+  );
+  const erroEnderecoForn = document.getElementById("erro-endereco-fornecedor");
+
   const inputNomeForn = document.getElementById("campo-nome-fornecedor");
   const erroNomeForn = document.getElementById("erro-nome-fornecedor");
 
@@ -354,6 +392,13 @@ if (formFornecedor) {
     if (inputDataCadastro.value.trim() !== "") {
       erroDataCadastro?.classList.remove("visivel");
       inputDataCadastro.classList.remove("campo-invalido");
+    }
+  });
+
+  inputEnderecoForn?.addEventListener("input", () => {
+    if (inputEnderecoForn.value.trim() !== "") {
+      erroEnderecoForn?.classList.remove("visivel");
+      inputEnderecoForn.classList.remove("campo-invalido");
     }
   });
 
@@ -389,8 +434,9 @@ if (formFornecedor) {
   formFornecedor.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const dataVal = inputDataCadastro ? inputDataCadastro.value:"";
+    const dataVal = inputDataCadastro ? inputDataCadastro.value : "";
     const nomeVal = inputNomeForn ? inputNomeForn.value.trim() : "";
+    const enderecoVal = inputEnderecoForn ? inputEnderecoForn.value.trim() : "";
     const contatoVal = inputContato ? inputContato.value.trim() : "";
     const cnpjVal = inputCnpj ? inputCnpj.value.trim() : "";
     const produtoVal = inputProdutoForn ? inputProdutoForn.value.trim() : "";
@@ -411,6 +457,16 @@ if (formFornecedor) {
       erroNomeForn?.classList.add("visivel");
       inputNomeForn?.classList.add("campo-invalido");
       inputNomeForn?.focus();
+      return;
+    } else {
+      erroNomeForn?.classList.remove("visivel");
+      inputNomeForn?.classList.remove("campo-invalido");
+    }
+
+    if (enderecoVal === "") {
+      erroEnderecoForn?.classList.add("visivel");
+      inputEnderecoForn?.classList.add("campo-invalido");
+      inputEnderecoForn?.focus();
       return;
     } else {
       erroNomeForn?.classList.remove("visivel");
@@ -480,6 +536,7 @@ if (formFornecedor) {
     const dadosFornecedor = {
       data: dataVal,
       nome: nomeVal,
+      endereco: endereco,
       contato: contatoVal,
       cnpj: cnpjVal,
       produto: produtoVal,
@@ -548,15 +605,17 @@ if (formFornecedor) {
       const linha = botaoEditar.closest("tr");
 
       document.getElementById("campo-data-cadastro").value =
-          linha.children[1].textContent;
+        linha.children[1].textContent;
       document.getElementById("campo-nome-fornecedor").value =
         linha.children[2].textContent;
-      document.getElementById("campo-contato").value =
+      document.getElementById("campo-endereco-fornecedor").value =
         linha.children[3].textContent;
-      document.getElementById("campo-cnpj").value =
+      document.getElementById("campo-contato").value =
         linha.children[4].textContent;
-      document.getElementById("campo-produto-fornecido").value =
+      document.getElementById("campo-cnpj").value =
         linha.children[5].textContent;
+      document.getElementById("campo-produto-fornecido").value =
+        linha.children[6].textContent;
 
       botaoSalvarFornecedor.textContent = "Atualizar Fornecedor";
       document
@@ -564,4 +623,29 @@ if (formFornecedor) {
         .scrollIntoView({ behavior: "smooth" });
     }
   });
+
+  // FILTRO POR PRODUTO FORNECIDO
+  const campoPesquisa = document.getElementById("campo-produto-fornecido"); // O ID do seu input atual
+  const corpoTabela = document.getElementById("tabela-corpo"); // O ID do tbody da sua tabela
+
+  if (campoPesquisa && corpoTabela) {
+    campoPesquisa.addEventListener("input", (e) => {
+      const termo = e.target.value.toLowerCase().trim();
+
+      // Pega todas as linhas (tr) de dentro da tabela
+      const linhas = corpoTabela.querySelectorAll("tr");
+
+      linhas.forEach((linha) => {
+        // Pega todo o texto contido na linha da tabela
+        const textoLinha = linha.textContent.toLowerCase();
+
+        // Se o texto da linha incluir o que foi digitado, mostra a linha. Se não, esconde.
+        if (textoLinha.includes(termo)) {
+          linha.style.display = ""; // Mantém o comportamento padrão da tabela
+        } else {
+          linha.style.display = "none"; // Esconde a linha que não bate com a busca
+        }
+      });
+    });
+  }
 }

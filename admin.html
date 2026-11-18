@@ -100,6 +100,12 @@
           </div>
 
           <div class="grupo-campo-formulario">
+            <label for="campo-peso">Peso (g)</label>
+            <input type="text" id="campo-peso" placeholder="Ex: 100" required />
+            <span class="mensagem-erro" id="erro-peso">Campo obrigatório</span>
+          </div>
+
+          <div class="grupo-campo-formulario">
             <label for="campo-preco">Preço (R$)</label>
             <input
               type="text"
@@ -138,6 +144,7 @@
                 <th>Foto</th>
                 <th>Nome</th>
                 <th>Categoria</th>
+                <th>Peso (g)</th>
                 <th>Preço</th>
                 <th>Ações</th>
               </tr>
@@ -151,17 +158,16 @@
       <section id="secao-formulario-fornecedor" class="secao-formulario">
         <h3>Cadastro de Fornecedores</h3>
         <form id="form-fornecedor" class="formulario-em-grade" novalidate>
-
           <div class="grupo-campo-formulario">
             <label for="campo-data-cadastro">Data de Cadastro</label>
             <input
-                    type="date"
-                    id="campo-data-cadastro"
-                    placeholder="YYYY-MM-DD"
-                    required
+              type="date"
+              id="campo-data-cadastro"
+              placeholder="YYYY-MM-DD"
+              required
             />
             <span class="mensagem-erro" id="erro-data-cadastro"
-            >Campo obrigatório</span
+              >Campo obrigatório</span
             >
           </div>
 
@@ -171,6 +177,19 @@
               type="text"
               id="campo-nome-fornecedor"
               placeholder="Ex: Joao Cacau"
+              required
+            />
+            <span class="mensagem-erro" id="erro-nome-fornecedor"
+              >Campo obrigatório</span
+            >
+          </div>
+
+          <div class="grupo-campo-formulario">
+            <label for="campo-endereco-fornecedor">Endereço</label>
+            <input
+              type="text"
+              id="campo-endereco-fornecedor"
+              placeholder="Ex: Rua: João Naves, 123"
               required
             />
             <span class="mensagem-erro" id="erro-nome-fornecedor"
@@ -235,13 +254,16 @@
                 <th>ID</th>
                 <th>Data</th>
                 <th>Nome</th>
+                <th>Endereço</th>
                 <th>Contato</th>
                 <th>CNPJ</th>
                 <th>Produto Fornecido</th>
                 <th>Ações</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody id="tabela-corpo">
+              <!-- O código será ijetado pelo js -->
+            </tbody>
           </table>
         </div>
       </section>
