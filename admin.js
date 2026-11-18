@@ -399,6 +399,7 @@ if (formFornecedor) {
     if (inputEnderecoForn.value.trim() !== "") {
       (document.getElementById("erro-endereco-fornecedor"))?.classList.remove("visivel");
       inputEnderecoForn.classList.remove("campo-invalido");
+      erroEnderecoForn?.classList.remove("visivel");
     }
   });
 
