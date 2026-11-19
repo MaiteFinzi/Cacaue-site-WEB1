@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // const API_PRODUTOS =
   //  "https://landing-unhearing-visible.ngrok-free.dev/produto";
 
-  const API_PRODUTOS = "http://10.10.76.136:8082/produto";
+  //const API_PRODUTOS = "http://10.10.76.136:8082/produto";
 
-  //const API_PRODUTOS = "http://localhost:3000/produtos";
+  const API_PRODUTOS = "http://localhost:3000/produtos";
 
   //const API_PRODUTOS = "http://localhost:8082/produto";
 

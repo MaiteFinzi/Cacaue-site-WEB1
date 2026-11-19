@@ -8,9 +8,9 @@ window.addEventListener("DOMContentLoaded", () => {
   //const API_PRODUTOS =
   //  "https://landing-unhearing-visible.ngrok-free.dev/produto";
 
-  const API_PRODUTOS = "http://10.10.76.136:8082/produto";
+  //const API_PRODUTOS = "http://10.10.76.136:8082/produto";
 
-  //const API_PRODUTOS = "http://localhost:3000/produtos";
+  const API_PRODUTOS = "http://localhost:3000/produtos";
 
   //const API_PRODUTOS = "http://localhost:8082/produto";
 
@@ -312,9 +312,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // ================= 2. LÓGICA DE FORNECEDORES (COM FETCH) =================
 
-const API_FORNECEDORES = "http://10.10.76.136:8082/fornecedor";
+//const API_FORNECEDORES = "http://10.10.76.136:8082/fornecedor";
 
-//const API_FORNECEDORES = "http://localhost:3000/fornecedores";
+const API_FORNECEDORES = "http://localhost:3000/fornecedores";
 
 //const API_FORNECEDORES = "http://localhost:8082/fornecedor";
 
@@ -516,9 +516,11 @@ if (formFornecedor) {
 
         const fornecedorDuplicado = fornecedoresExistentes.find(
           (f) =>
-            (f.nome.toLowerCase() === nomeVal.toLowerCase() ||
-              f.cnpj === cnpjVal ||
-              f.contato === contatoVal) &&
+            (f.nome.toLowerCase() === nomeVal.toLowerCase() 
+             // f.cnpj === cnpjVal ||
+          //f.contato === contatoVal
+            ) 
+              &&
             String(f.id) !== String(idFornecedorEmEdicao),
         );
 
